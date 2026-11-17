@@ -1,0 +1,147 @@
+﻿<div class="container-fluid my-2 @(Hide ? "d-none" : "")">
+
+    @if (blocked)
+    {
+        <div class="row panel-header bg-secondary bg-opacity-10 rounded-3 mx-1 mb-2 p-1 px-3 @(Collapsed ? "" : "open")"
+             role="button"
+             tabindex="0">
+            <div class="col text-danger d-flex align-items-center">
+                @TitleBlocked
+            </div>
+        </div>
+    }
+    else if (Disabled)
+    {
+        <div class="row panel-header bg-secondary bg-opacity-10 rounded-3 mx-1 mb-2 p-1 px-3 @(Collapsed ? "" : "open")"
+             role="button"
+             tabindex="0">
+            <div class="col text-primary d-flex align-items-center">
+                @Title
+            </div>
+        </div>
+    }
+    else
+    {
+        <div class="row panel-header bg-primary bg-opacity-10 rounded-3 mx-1 mb-2 p-1 px-3 @(Collapsed ? "" : "open")"
+             role="button"
+             tabindex="0"
+             aria-expanded="@(!Collapsed)"
+             @onclick="Toggle">
+            <div class="col text-primary d-flex align-items-center">
+                @Title
+            </div>
+            <div class="col-sm-1 d-flex justify-content-center align-items-center">
+                <i class="bi bi-chevron-down chevron text-black"></i>
+            </div>
+        </div>
+    }
+
+    <!-- Wrapper com animação -->
+    <div class="row mx-1 @(Collapsed ? "collapse" : "")">
+        <div class="col-12 rounded-3 p-0">
+            <div class="collapsible-wrapper @(Collapsed ? "" : "open")">
+                <div class="collapsible-inner" style="background:#fafafa;">
+                    <div class="p-2 d-flex flex-column gap-3">
+                        @ChildContent
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@code {
+    [Parameter] public string Title { get; set; } = "";
+    [Parameter] public string TitleBlocked { get; set; } = "";
+    [Parameter] public bool Hide { get; set; } = false;
+    [Parameter] public bool Disabled { get; set; } = false;
+    [Parameter] public bool Collapsed {
+        get 
+        {
+            if (Blocked || Disabled)
+                return true;
+            return collapsed; 
+        }
+        set { collapsed = value; }
+    }
+    [Parameter] public bool Blocked {
+        get { return blocked; }
+        set
+        {
+            if (value == true)
+                Collapsed = true;
+            blocked = value;
+        }
+    }
+    private bool blocked = false;
+    private bool collapsed = true;
+    
+    [Parameter] public RenderFragment? ChildContent { get; set; }
+    private void Toggle() => Collapsed = !Collapsed;
+}
+
+<style>
+    /* ===== Cabeçalho clicável (hover/active) ===== */
+    .panel-header {
+        cursor: pointer;
+        user-select: none;
+        transition: transform .18s ease, box-shadow .18s ease, background-color .18s ease;
+        will-change: transform, box-shadow;
+    }
+
+        .panel-header:hover {
+            transform: scale(1.01);
+            background-color: rgba(var(--bs-primary-rgb), .14);
+        }
+
+        .panel-header:active {
+            transform: scale(.997);
+        }
+
+    /* Chevron rotaciona quando aberto */
+    .chevron {
+        display: inline-block;
+        transition: transform .25s ease;
+        will-change: transform;
+    }
+
+    .panel-header.open .chevron {
+        transform: rotate(180deg);
+    }
+
+    /* ===== Animação de abrir/fechar com grid =====
+               - 0fr -> fechado, 1fr -> aberto
+               - A inner faz o overflow ser “recortado”
+            */
+    .collapsible-wrapper {
+        display: grid;
+        grid-template-rows: 0fr;
+        transition: grid-template-rows .35s ease;
+    }
+
+        .collapsible-wrapper.open {
+            grid-template-rows: 1fr;
+        }
+
+    .collapsible-inner {
+        opacity: 0;
+        transform: translateY(-4px);
+        transition: opacity .25s ease .08s, transform .25s ease .08s, background-color .18s ease;
+    }
+
+    .collapsible-wrapper.open .collapsible-inner {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    /* Bordas e cantos consistentes */
+    .collapsible-inner {
+        border-radius: 1rem; /* ~ rounded-4 */
+    }
+
+    /* Opcional: foco do header para teclado */
+    .panel-header:focus {
+        outline: 0;
+        box-shadow: 0 0 0 .2rem rgba(var(--bs-primary-rgb), .25);
+    }
+</style>

@@ -1,0 +1,159 @@
+﻿@inject I18n I18n
+
+@if (AppContext.CloseProcessing)
+{
+    <GridOptions Title=@I18n["GridOptionsFileList.Title"]>
+        @if (AppContext.SelectedFiles.Count() > 0)
+        {
+            <div class="list-group text-start overflow-auto p-1" style="max-height: 30vh;">
+                @foreach (var document in AppContext.SelectedFiles)
+                {
+                    <div class="list-group-item @GetClass(document.Status)">
+                        <div class="d-flex w-100 justify-content-between">
+                            <label class="w-100 text-start">
+                                <i class="@GetFileType(document.FileName) fs-5"></i>
+                                @document.FileName
+                                @if (document.Errors != null && !string.IsNullOrEmpty(document.Errors))
+                                {
+                                    <span class="lh-sm fw-lighter fs-6">
+                                        <br />
+                                        @document.Errors
+                                    </span>
+                                }
+                            </label>
+                            @if (AppContext.Processing)
+                          
+                            {
+                                <button @onclick=@(() => RemoveFile(document)) type="button" class="btn-close" aria-label="Close"></button>
+                            }
+                        </div>
+                    </div>
+                }
+            </div>
+        }
+        <GridOptionsItem Name=@I18n["GridOptionsFileList.Add.Name"]
+                         Description=@I18n["GridOptionsFileList.Add.Description"]>
+            <FilePickerButton ButtonText=@I18n["GridOptionsFileList.SelectFiles"] />
+        </GridOptionsItem>
+        <GridOptionsItem Name=@I18n["GridOptionsFileList.RemoveAll.Name"]
+                         Description=@I18n["GridOptionsFileList.RemoveAll.Description"]>
+            <button disabled="@AppContext.Processing" @onclick=RemoveAll class="btn btn-outline-danger">@I18n["GridOptionsFileList.ClearList"]</button>
+        </GridOptionsItem>
+    </GridOptions>
+}
+else
+{
+    <div class="m-2 p-2 bg-secondary bg-opacity-10 border border-secondary rounded-4 mb-5">
+        @if (AppContext.Processing)
+        {
+            <div class="fade-in">
+                <GridOptionsItem Name=@I18n["GridOptionsFileList.Stop.Name"]
+                                 Description=@I18n["GridOptionsFileList.Stop.Description"]>
+                    <button type="button" class="btn btn-danger">
+                        @I18n["GridOptionsFileList.Stop.Button"]
+                    </button>
+                </GridOptionsItem>
+            </div>
+        }
+        else
+        {
+            <div class="fade-in">
+                <GridOptionsItem Name=@I18n["GridOptionsFileList.Done.Title"]
+                                 Description=@I18n["GridOptionsFileList.Done.Description"]>
+                    <button @onclick=CloseProcessingList type="button" class="btn btn-secondary btn-outline-primary">
+                        <i class="bi bi-arrow-return-left"></i>
+                        @I18n["GridOptionsFileList.Close"]
+                    </button>
+                </GridOptionsItem>
+            </div>
+        }
+    </div>
+    @foreach (var document in AppContext.SelectedFiles)
+    {
+        <div class="list-group-item @GetClass(document.Status)">
+            <div class="d-flex w-100 fs-5 justify-content-between">
+                <label class="w-100 text-start">
+                    <i class="@GetFileType(document.FileName)"></i>
+                    @document.FileName
+                    @if (document.Errors != null && !string.IsNullOrEmpty(document.Errors))
+                    {
+                        <span class="lh-1 fw-lighter fs-6">
+                            <br />
+                            @document.Errors
+                        </span>
+                    }
+                    @if (document.Status == FileStatus.Success)
+                    {
+                        <span class="lh-1 fw-lighter fs-6 text-success">
+                            <br />
+                            ✔ Arquivo salvo em Downloads
+                        </span>
+                    }
+                </label>
+                @if (document.Errors == null && string.IsNullOrEmpty(document.Errors))
+                {
+                    <div class="spinner-grow" role="status">
+                        <span class="visually-hidden m-1">@I18n["GridOptionsFileList.Loading"]</span>
+                    </div>
+                }
+            </div>
+        </div>
+    }
+}
+
+@code {
+    [CascadingParameter] public AppContextModel AppContext { get; set; }
+    private void RemoveAll()
+    {
+        AppContext.SelectedFiles = [];
+        AppContext.UpdateInterface();
+    }
+    private void RemoveFile(UploadedFile file)
+    {
+        AppContext.SelectedFiles.Remove(file);
+        AppContext.UpdateInterface();
+    }
+    private string GetClass(FileStatus status) => status switch
+    {
+        FileStatus.Success => "list-group-item-success",
+        FileStatus.Warning => "list-group-item-warning",
+        FileStatus.Error => "list-group-item-danger",
+        _ => ""
+    };
+    private void CloseProcessingList()
+    {
+        AppContext.CloseProcessing = true;
+        AppContext.UpdateInterface();
+    }
+    public string GetFileType(string fileName)
+    {
+        var ext = Path.GetExtension(fileName)?.ToLowerInvariant();
+
+        switch (ext)
+        {
+            case ".pptx":
+                return "bi bi-filetype-pptx";
+
+            case ".ppt":
+                return "bi bi-filetype-ppt";
+
+            case ".doc":
+                return "bi bi-filetype-doc";
+
+            case ".docx":
+                return "bi bi-filetype-docx";
+
+            case ".xlsx":
+                return "bi bi-filetype-xlsx";
+
+            case ".xls":
+                return "bi bi-filetype-xls";
+
+            case ".pdf":
+                return "bi bi-filetype-pdf";
+
+            default:
+                return "";
+        }
+    }
+}

@@ -1,0 +1,13 @@
+﻿<Introduction 
+    Title=@Title 
+    Description=@Description>
+    <div class="container-fluid mt-3">
+        @ChildContent
+    </div>
+</Introduction>
+
+@code {
+    [Parameter] public string Title { get; set; } = "";
+    [Parameter] public string Description { get; set; } = "";
+    [Parameter] public RenderFragment? ChildContent { get; set; }
+}

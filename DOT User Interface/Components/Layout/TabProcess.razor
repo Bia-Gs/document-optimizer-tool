@@ -1,0 +1,109 @@
+﻿@inject I18n I18n
+
+<Introduction Title=@I18n["Processing.Title"]
+              Description=@Description>
+    <div class="container-fluid d-flex flex-column flex-sm-row gap-2 py-2 overflow-x-auto">
+        @if (AppContext.CloseProcessing)
+        {
+                <FilePickerButton ButtonText=@I18n["GridOptionsFileList.SelectFiles"] />
+                <button @onclick=RemoveAll class="btn btn-outline-danger">@I18n["GridOptionsFileList.ClearList"]</button>
+                @ChildContent
+        }
+        else
+        {
+            @if (AppContext.Processing)
+            {
+                <button @onclick=AppContext.CancelProcessing type="button" class="btn btn-danger ms-sm-auto">@I18n["GridOptionsFileList.Stop.Button"]</button>
+            }
+            else
+            {
+                <button @onclick=CloseProcessingList type="button" class="btn btn-secondary btn-outline-primary ms-sm-auto">
+                    <i class="bi bi-arrow-return-left"></i>
+                    Close
+                </button>
+            }
+        }
+    </div>
+    @if (AppContext.SelectedFiles.Count() > 0)
+    {
+        <div class="list-group text-start overflow-auto p-1">
+            @foreach (var document in AppContext.SelectedFiles)
+            {
+                <div class="list-group-item @GetClass(document.Status)">
+                    <div class="d-flex w-100 justify-content-between">
+                        <label class="w-100 text-start">
+                            <i class="@GetFileType(document.FileName) fs-5"></i>
+                            @document.FileName
+                            @if (document.Errors != null && !string.IsNullOrEmpty(document.Errors))
+                            {
+                                <span class="lh-sm fw-lighter fs-6">
+                                    <br />
+                                    @document.Errors
+                                </span>
+                            }
+                        </label>
+                        @if (!AppContext.Processing && document.Status == FileStatus.Normal)
+                        {
+                            <button @onclick=@(() => RemoveFile(document)) type="button" class="btn-close" aria-label="Close"></button>
+                        }
+                        else
+                        {
+                            @if (document.Status == FileStatus.Normal)
+                            {
+                                <div class="spinner-grow" role="status">
+                                    <span class="visually-hidden m-1">
+                                        @I18n["TabProcess.Loading"]
+                                    </span>
+                                </div>
+                            }
+                        }
+                    </div>
+                </div>
+            }
+        </div>
+    }
+</Introduction>
+
+@code {
+    [CascadingParameter] public AppContextModel AppContext { get; set; }
+    [Parameter] public RenderFragment? ChildContent { get; set; }
+    [Parameter] public string Description { get; set; } = "";
+    private void RemoveAll()
+    {
+        AppContext.SelectedFiles = [];
+        AppContext.UpdateInterface();
+    }
+    private void RemoveFile(UploadedFile file)
+    {
+        AppContext.SelectedFiles.Remove(file);
+        AppContext.UpdateInterface();
+    }
+    private string GetClass(FileStatus status) => status switch
+    {
+        FileStatus.Success => "list-group-item-success",
+        FileStatus.Warning => "list-group-item-warning",
+        FileStatus.Error => "list-group-item-danger",
+        _ => ""
+    };
+    private void CloseProcessingList()
+    {
+        AppContext.CloseProcessing = true;
+        AppContext.UpdateInterface();
+    }
+    public string GetFileType(string fileName)
+    {
+        var ext = Path.GetExtension(fileName)?.ToLowerInvariant();
+
+        return ext switch
+        {
+            ".pptx" => "bi bi-filetype-pptx",
+            ".ppt" => "bi bi-filetype-ppt",
+            ".doc" => "bi bi-filetype-doc",
+            ".docx" => "bi bi-filetype-docx",
+            ".xlsx" => "bi bi-filetype-xlsx",
+            ".xls" => "bi bi-filetype-xls",
+            ".pdf" => "bi bi-filetype-pdf",
+            _ => "",
+        };
+    }
+}

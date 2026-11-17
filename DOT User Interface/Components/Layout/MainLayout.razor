@@ -1,0 +1,59 @@
+﻿@inherits LayoutComponentBase
+@inject I18n I18n
+
+<CascadingValue Value="AppContext">
+    <div class="page body-container w-100">
+        <NavMenu />
+        @Body
+    </div>
+</CascadingValue>
+
+<InputFile id="import_files_to_process"
+           class="d-none"
+           multiple
+           accept=".doc,.docx,.xls,.xlsx,.pdf,.ppt,.pptx"
+           OnChange="OnFilesSelected" />
+
+@code {
+    private AppContextModel? AppContext;
+
+    protected override async Task OnInitializedAsync()
+    {
+        // Agora o I18n já foi injetado
+        AppContext = new AppContextModel(I18n);
+
+        I18n.OnChange += SetupValuesChanged;
+        AppContext.OnChange += SetupValuesChanged;
+
+        await I18n.SetLanguageAsync(I18n.CurrentLanguage);
+
+        // Carrega histórico de notificações
+        await AppContext.LoadNotificationsAsync();
+    }
+
+    private void SetupValuesChanged()
+        => InvokeAsync(StateHasChanged);
+
+    public void Dispose()
+    {
+        I18n.OnChange -= SetupValuesChanged;
+
+        if (AppContext is not null)
+            AppContext.OnChange -= SetupValuesChanged;
+    }
+
+    private async Task OnFilesSelected(InputFileChangeEventArgs e)
+    {
+        if (AppContext is null)
+            return;
+
+        foreach (var file in e.GetMultipleFiles())
+        {
+            AppContext.SelectedFiles.Add(new UploadedFile(file));
+            AppContext.UpdateInterface();
+        }
+
+        AppContext.PageTabProcessing();
+        StateHasChanged();
+    }
+}

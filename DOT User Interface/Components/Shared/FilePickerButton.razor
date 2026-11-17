@@ -1,0 +1,20 @@
+﻿@if (AppContext is not null && AppContext.Processing)
+{
+    <button disabled class="btn btn-outline-primary @ButtonClass">
+        <i class="bi bi-file-earmark-plus-fill me-2"></i>
+        @ButtonText
+    </button>
+}
+else
+{
+    <label for="import_files_to_process" class="btn btn-outline-primary @ButtonClass">
+        <i class="bi bi-file-earmark-plus-fill me-2"></i>
+        @ButtonText
+    </label>
+}
+
+@code {
+    [CascadingParameter] public AppContextModel? AppContext { get; set; }
+    [Parameter] public string ButtonText { get; set; } = "";
+    [Parameter] public string ButtonClass { get; set; } = "";
+}

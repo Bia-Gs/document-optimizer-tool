@@ -1,0 +1,300 @@
+﻿@page "/marker"
+@inject I18n I18n
+@using DOT_User_Interface.Models.Tables
+@using DOT_User_Interface.Models.Tables.Util
+
+<NavTabsMenu Options=Options />
+
+<div class="container-fluid mb-3">
+    @switch (AppContext.PageTab)
+    {
+        case PageTabs.Create:
+            @if (TableFactory.EditTable == null)
+            {
+                <GridData Title=@I18n["Markup.Create.Title"]
+                          Description=@I18n["Markup.Create.Description"]>
+                    <GridDataItem Image="bi-highlighter"
+                                  Title=@I18n["Markup.Create.Marker.Title"]
+                                  Text=@I18n["Markup.Create.Marker.Text"]>
+                        <div class="hstack gap-3 justify-content-center">
+                            <button class="btn btn-secondary btn-outline-primary" @onclick=@(() => TableFactory.Create(TableTypes.Marker))>
+                                <i class="bi bi-plus-lg"></i>
+                                @I18n["Create.Create.Button"]
+                            </button>
+                            @if (TableFactory.Markers.Count > 0)
+                            {
+                                <div class="vr"></div>
+                                <div class="dropdown">
+                                    <button class="btn btn-outline-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                        <i class="bi bi-pencil-square"></i>
+                                        @I18n["Create.Choose.Button"]
+                                    </button>
+                                    <ul class="dropdown-menu">
+                                        @foreach (var marker in TableFactory.Markers)
+                                        {
+                                            <li><a @onclick=@(() => TableFactory.Edit(marker)) class="dropdown-item">@marker.Name</a></li>
+                                        }
+                                    </ul>
+                                </div>
+                            }
+                        </div>
+                    </GridDataItem>
+                    <GridDataItem Image="bi-book"
+                                  Title=@I18n["Markup.Create.Glossary.Title"]
+                                  Text=@I18n["Markup.Create.Glossary.Text"]>
+                        <div class="hstack gap-3 justify-content-center">
+                            <button class="btn btn-secondary btn-outline-primary" @onclick=@(() => TableFactory.Create(TableTypes.Glossary))>
+                                <i class="bi bi-plus-lg"></i>
+                                @I18n["Create.Create.Button"]
+                            </button>
+                            @if (TableFactory.Glossaries.Count > 0)
+                            {
+                                <div class="vr"></div>
+                                <div class="dropdown">
+                                    <button class="btn btn-outline-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                        <i class="bi bi-pencil-square"></i>
+                                        @I18n["Create.Choose.Button"]
+                                    </button>
+                                    <ul class="dropdown-menu">
+                                        @foreach (var glossary in TableFactory.Glossaries)
+                                        {
+                                            <li><a @onclick=@(() => TableFactory.Edit(glossary)) class="dropdown-item">@glossary.Name</a></li>
+                                        }
+                                    </ul>
+                                </div>
+                            }
+                        </div>
+                    </GridDataItem>
+                    <GridDataItem Image="bi-download"
+                                  Title=@I18n["Create.External.Title"]
+                                  Text=@I18n["Markup.Create.External.Text"]>
+                        <div class="hstack gap-3 justify-content-center">
+                            <FilePickerTableJson TableFactory="TableFactory"
+                                            ButtonClass="btn btn-secondary btn-outline-primary"
+                                            Accepts=".json"
+                                            Multiple="false"
+                                            NewName=""
+                                            OverrideType="null"
+                                            OnImported="HandleImported">
+                            </FilePickerTableJson>
+                            @if (TableFactory.Tables.Count > 0)
+                            {
+                                <div class="vr"></div>
+                                <div class="dropdown">
+                                    <button class="btn btn-outline-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                        <i class="bi bi-share"></i>
+                                        @I18n["Create.External.Export.Button"]
+                                    </button>
+                                    <ul class="dropdown-menu">
+                                        @foreach (var table in TableFactory.Tables)
+                                        {
+                                            <li @onclick=@(() => table.ShareAsync(I18n))>
+                                                <a class="dropdown-item">
+                                                    <i class="@TableImage(table.Type)"></i>
+                                                    @I18n["Processing.Applying.Choose." + table.Type.ToString()]: @table.Name
+                                                </a>
+                                            </li>
+                                        }
+                                    </ul>
+                                </div>
+                            }
+                        </div>
+                    </GridDataItem>
+                </GridData>
+            }
+            else
+            {
+                <Introduction Title=@I18n["Markup.Create.Table.Title.Glossary"]
+                              Description=@I18n["Markup.Create.Table.Description"]>
+                    <div class="container-fluid d-grid gap-2">
+                        <div class="container-fluid d-grid gap-2 my-2">
+                            <div class="row">
+                                <div class="input-group border border-primary rounded-3">
+                                    <span class="input-group-text bg-transparent border-0">
+                                        @I18n["Create.Name.Field"]
+                                    </span>
+                                    <input @bind=TableFactory.EditTable.Name
+                                           type="text"
+                                           class="form-control @(TableFactory.EditTable.Name == "" ? "bg-danger" : "bg-transparent") bg-opacity-25 border-0 text-primary fw-bold">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="input-group input-group-sm border border-primary rounded-3">
+                                    <span class="input-group-text bg-transparent border-0">
+                                        @I18n["Create.Description.Field"]
+                                    </span>
+                                    <textarea @bind=TableFactory.EditTable.Description
+                                              class="form-control bg-transparent border-0 text-primary"
+                                              aria-label="With textarea"></textarea>
+                                </div>
+                            </div>
+                            <div class="row gap-2">
+                                <button disabled="@(TableFactory.EditTable.Name == "")"
+                                        @onclick=@(() => TableFactory.Add(TableFactory.EditTable))
+                                        type="button"
+                                        class="col btn btn-secondary btn-outline-primary">
+                                    <i class="bi bi-floppy"></i>
+                                    @I18n["Create.Save.Button"]
+                                </button>
+                                <button @onclick=TableFactory.EditTable.AddRow
+                                        type="button"
+                                        class="col btn btn-outline-primary">
+                                    <i class="bi bi-plus-lg"></i>
+                                    @I18n["Markup.Create.Table.AddRow"]
+                                </button>
+                                <button @onclick=TableFactory.Cancel
+                                        type="button"
+                                        class="col btn btn-outline-danger">
+                                    <i class="bi bi-x-lg"></i>
+                                    @I18n["Create.Cancel.Button"]
+                                </button>
+                                @if (TableFactory?.TargetTables?.Item1 != null)
+                                {
+                                    <button @onclick=@(() => TableFactory.Remove(TableFactory?.TargetTables?.Item1))
+                                            type="button"
+                                            class="col btn btn-outline-danger">
+                                        <i class="bi bi-trash3"></i>
+                                        @I18n["Create.Delete.Button"]
+                                    </button>
+                                }
+                            </div>
+                            <div class="row">
+                                <div class="input-group input-group">
+                                    <span class="input-group-text bi bi-filter"></span>
+                                    <input @bind="TableFactory.EditTable!.Filter"
+                                           class="form-control me-auto text-black"
+                                           type="text"
+                                           placeholder=@I18n["Markup.Create.Table.Filter"] />
+                                </div>
+                            </div>
+                            <div class="row">
+                                <table class="table table-sm table-striped table-hover my-5">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">#</th>
+                                            @if (TableFactory.EditTable.Type == TableTypes.Marker)
+                                            {
+                                                <th scope="col">@I18n["Markup.Create.Table.SourceTerm"]</th>
+                                            }
+                                            else if (TableFactory.EditTable.Type == TableTypes.Glossary)
+                                            {
+                                                <th scope="col">@I18n["Markup.Create.Table.SourceTerm"]</th>
+                                                <th scope="col">@I18n["Markup.Create.Table.TargetTerm"]</th>
+                                            }
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var row in TableFactory.EditTable.RowsAsObjects)
+                                        {
+                                            <tr>
+                                                <th scope="row" class="align-content-center">
+                                                    <button type="button"
+                                                            class="btn-close"
+                                                            aria-label="Close"
+                                                            @onclick="@(() => TableFactory.EditTable.RemoveRow(row))"></button>
+                                                </th>
+
+                                                @if (TableFactory.EditTable.Type == TableTypes.Marker)
+                                                {
+                                                    var r = (DOT_User_Interface.Models.Tables.MarkerRow)row;
+                                                    <td><input @bind="r.SourceTerm" class="form-control" /></td>
+                                                }
+                                                else if (TableFactory.EditTable.Type == TableTypes.Glossary)
+                                                {
+                                                    var r = (DOT_User_Interface.Models.Tables.GlossaryRow)row;
+                                                    <td><input @bind="r.SourceTerm" class="form-control" /></td>
+                                                    <td><input @bind="r.TargetTerm" class="form-control" /></td>
+                                                }
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </Introduction>
+
+            }
+            break;
+
+        case PageTabs.Processing:
+            <TabProcess Description=@I18n["Markup.Processing.Description"]>
+                <button type="button" class="btn btn-outline-primary ms-auto" @onclick=AppContext.PageTabCreate>
+                    <i class="bi bi-plus-lg"></i>
+                    @I18n["Processing.Creation.Button"]
+                </button>
+                <div class="vr mx-1"></div>
+                <div class="dropdown">
+                    <button disabled="@(TableFactory.Tables.Count == 0 || !AppContext.HasFiles)" class="btn btn-outline-primary btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        @I18n["Processing.Applying.Choose"]
+                    </button>
+                    <ul class="dropdown-menu">
+                        @foreach (var table in TableFactory.Tables)
+                        {
+                            <li @onclick=@(() => AppContext.ProcessFilesAsync(ProcessEndpoints.MarkFile, table.ProcessingArgs()))>
+                                <a class="dropdown-item">
+                                    <i class="@TableImage(table.Type)"></i>
+                                    @I18n["Processing.Applying.Choose." + table.Type.ToString()]: @table.Name
+                                </a>
+                            </li>
+                        }
+                    </ul>
+                </div>
+            </TabProcess>
+            break;
+
+        case PageTabs.Notifications:
+            <Notifications />
+            break;
+
+        case PageTabs.Settings:
+            <Settings />
+            break;
+
+        default:
+            <Introduction Title=@I18n["Marker.Introduction.Title"]
+                          Description=@I18n["Marker.Introduction.Description"]>
+                <FilePickerButton ButtonClass="px-4 my-5 rounded-4 fs-5"
+                                  ButtonText=@I18n["Introduction.Button"] />
+            </Introduction>
+            break;
+    }
+</div>
+
+@code {
+    [CascadingParameter] public AppContextModel AppContext { get; set; }
+
+    // Estado do componente (moved from Razor)
+    private List<PageTabs> Options { get; } = new() { PageTabs.Create, PageTabs.Processing, PageTabs.Notifications, PageTabs.Settings };
+    private TableFactory TableFactory;
+    protected override async Task OnInitializedAsync()
+    {
+        if (AppContext.TableFactory == null)
+            AppContext.TableFactory = new(I18n);
+        TableFactory = AppContext.TableFactory;
+    }
+
+    private async Task HandleImported(ITable table)
+    {
+        table.Filter = string.Empty;
+        if (AppContext is not null)
+        {
+            AppContext.PageTabProcessing();
+            AppContext.UpdateInterface();
+        }
+        await InvokeAsync(StateHasChanged);
+    }
+
+    private string TableImage(TableTypes type)
+    {
+        switch (type)
+        {
+            case TableTypes.Marker:
+                return "bi bi-highlighter";
+            case TableTypes.Glossary:
+                return "bi bi-book";
+            default:
+                return "";
+        }
+    }
+}

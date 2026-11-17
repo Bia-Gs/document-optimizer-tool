@@ -1,0 +1,1212 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="NavMenu.Editor" xml:space="preserve">
+    <value>Éditeur</value>
+  </data>
+  <data name="NavMenu.Help" xml:space="preserve">
+    <value>Support</value>
+  </data>
+  <data name="NavMenu.Home" xml:space="preserve">
+    <value>Accueil</value>
+  </data>
+  <data name="NavMenu.Marker" xml:space="preserve">
+    <value>Marqueur</value>
+  </data>
+  <data name="NavMenu.Translator" xml:space="preserve">
+    <value>Traducteur</value>
+  </data>
+  <data name="Settings.Languages.en" xml:space="preserve">
+    <value>Anglais</value>
+  </data>
+  <data name="Settings.Languages.fr" xml:space="preserve">
+    <value>Français</value>
+  </data>
+  <data name="Settings.Languages.pt" xml:space="preserve">
+    <value>Portugais</value>
+  </data>
+  <data name="Settings.Languages.es" xml:space="preserve">
+    <value>Espagnol</value>
+  </data>
+  <data name="Settings.Interface.Title" xml:space="preserve">
+    <value>Interface : thème, langue et notifications</value>
+  </data>
+  <data name="Settings.Language.Title" xml:space="preserve">
+    <value>Langue :</value>
+  </data>
+  <data name="Settings.Language.Description" xml:space="preserve">
+    <value>Changer la langue de l’interface</value>
+  </data>
+  <data name="Settings.DarkTheme.Title" xml:space="preserve">
+    <value>Thème sombre</value>
+  </data>
+  <data name="Settings.DarkTheme.Description" xml:space="preserve">
+    <value>Modifier le style de l’interface</value>
+  </data>
+  <data name="Settings.Notify.Title" xml:space="preserve">
+    <value>Notifications :</value>
+  </data>
+  <data name="Settings.Notify.Description" xml:space="preserve">
+    <value>Définit si le système peut envoyer des notifications</value>
+  </data>
+  <data name="Settings.Workers.Title" xml:space="preserve">
+    <value>Tâches parallèles :</value>
+  </data>
+  <data name="Settings.Workers.Description" xml:space="preserve">
+    <value>Définit combien de documents peuvent être traités simultanément</value>
+  </data>
+  <data name="Settings.External.Title" xml:space="preserve">
+    <value>Fonctions externes : DOT Manager</value>
+  </data>
+  <data name="Settings.DOTManager.Title" xml:space="preserve">
+    <value>DOT Manager :</value>
+  </data>
+  <data name="Settings.DOTManager.Description" xml:space="preserve">
+    <value>Réparer, désinstaller et mettre à jour</value>
+  </data>
+  <data name="Settings.DOTManager.StartButton" xml:space="preserve">
+    <value>Démarrer</value>
+  </data>
+  <data name="Shared.NavTabs.Button" xml:space="preserve">
+    <value>Options</value>
+  </data>
+  <data name="Home.Welcome.Title" xml:space="preserve">
+    <value>Bienvenue sur DOT</value>
+  </data>
+  <data name="Home.Welcome.Description" xml:space="preserve">
+    <value>Ce logiciel a été développé afin d’optimiser la révision des documents techniques et d’accélérer l’application des modifications sur plusieurs documents simultanément.</value>
+  </data>
+  <data name="Home.Welcome.Button" xml:space="preserve">
+    <value>Sélectionnez des fichiers ou glissez-déposez-les</value>
+  </data>
+  <data name="NavTabs.Settings" xml:space="preserve">
+    <value>Paramètres</value>
+  </data>
+  <data name="Help.Nav.Item1" xml:space="preserve">
+    <value>1. Aide</value>
+  </data>
+  <data name="Help.Nav.Item1.1" xml:space="preserve">
+    <value>Zone FAQ</value>
+  </data>
+  <data name="Help.Nav.Item1.2" xml:space="preserve">
+    <value>Guide utilisateur</value>
+  </data>
+  <data name="Help.Nav.Item2" xml:space="preserve">
+    <value>2. Guide utilisateur</value>
+  </data>
+  <data name="Help.Nav.Item2.1" xml:space="preserve">
+    <value>Premier contact</value>
+  </data>
+  <data name="Help.Nav.Item2.2" xml:space="preserve">
+    <value>Comment utiliser</value>
+  </data>
+  <data name="Help.Nav.Item2.3" xml:space="preserve">
+    <value>Fonctionnement des systèmes</value>
+  </data>
+  <data name="Help.Nav.Item2.4" xml:space="preserve">
+    <value>Extensions prises en charge</value>
+  </data>
+  <data name="Help.Nav.Item3" xml:space="preserve">
+    <value>3. Markup</value>
+  </data>
+  <data name="Help.Nav.Item3.1" xml:space="preserve">
+    <value>Aperçu général</value>
+  </data>
+  <data name="Help.Nav.Item3.2" xml:space="preserve">
+    <value>Marker</value>
+  </data>
+  <data name="Help.Nav.Item3.3" xml:space="preserve">
+    <value>Rewrite</value>
+  </data>
+  <data name="Help.Nav.Item4" xml:space="preserve">
+    <value>4. Editor</value>
+  </data>
+  <data name="Help.Nav.Item4.1" xml:space="preserve">
+    <value>Vue d'ensemble</value>
+  </data>
+  <data name="Help.Nav.Item4.2" xml:space="preserve">
+    <value>Fonction rewrite</value>
+  </data>
+  <data name="Help.Nav.Item4.3" xml:space="preserve">
+    <value>Fonction paragraphe</value>
+  </data>
+  <data name="Help.Nav.Item5" xml:space="preserve">
+    <value>5. Translator</value>
+  </data>
+  <data name="Help.Nav.Item5.1" xml:space="preserve">
+    <value>Vue d'ensemble</value>
+  </data>
+  <data name="Help.Nav.Item6" xml:space="preserve">
+    <value>6. Paramètres</value>
+  </data>
+  <data name="Help.Nav.Item6.1" xml:space="preserve">
+    <value>Vue d'ensemble</value>
+  </data>
+  <data name="Help.Nav.Item6.2" xml:space="preserve">
+    <value>Notifications</value>
+  </data>
+  <data name="Help.Nav.Item6.3" xml:space="preserve">
+    <value>DOT Manager</value>
+  </data>
+  <data name="Help.Nav.Item7" xml:space="preserve">
+    <value>7. Autres</value>
+  </data>
+  <data name="Help.Nav.Item7.1" xml:space="preserve">
+    <value>Journal des modifications</value>
+  </data>
+  <data name="Help.Sections.Help.Title" xml:space="preserve">
+    <value>Aide</value>
+  </data>
+  <data name="Help.Sections.FAQ.Title" xml:space="preserve">
+    <value>Zone FAQ</value>
+  </data>
+  <data name="Help.Sections.FAQ.Description1" xml:space="preserve">
+    <value>La section FAQ se trouve dans le canal Teams :</value>
+  </data>
+  <data name="Help.Sections.FAQ.AccessLink" xml:space="preserve">
+    <value>- Accédez à la FAQ ici.</value>
+  </data>
+  <data name="Help.Sections.FAQ.Description2" xml:space="preserve">
+    <value>Dans ce canal, vous pouvez voir les questions/réponses des autres utilisateurs et poser les vôtres.</value>
+  </data>
+  <data name="Help.Sections.UserGuide.Title" xml:space="preserve">
+    <value>Guide utilisateur</value>
+  </data>
+  <data name="Help.Sections.UserGuide.FirstContact" xml:space="preserve">
+    <value>Premier contact</value>
+  </data>
+  <data name="Help.Sections.UserGuide.Paragraph1" xml:space="preserve">
+    <value>DOT (Document Optimizer Tool) est un logiciel de bureau conçu pour &lt;b&gt;automatiser les processus répétitifs&lt;/b&gt; dans les documents et les optimiser afin &lt;b&gt;d'éliminer les retouches&lt;/b&gt;.</value>
+  </data>
+  <data name="Help.Sections.UserGuide.Paragraph2" xml:space="preserve">
+    <value>Ses objectifs sont d'augmenter la productivité en éliminant les retouches et en réduisant les erreurs, de manière &lt;b&gt;pratique, flexible et rapide&lt;/b&gt; à grande échelle.</value>
+  </data>
+  <data name="Help.Sections.UserGuide.Paragraph3" xml:space="preserve">
+    <value>Il dispose de &lt;b&gt;trois systèmes principaux : Markup, Editor et Translator&lt;/b&gt; qui appliquent respectivement des marques, réécrivent des termes et exécutent des routines d'édition flexibles.</value>
+  </data>
+  <data name="Help.Sections.UserGuide.Paragraph4" xml:space="preserve">
+    <value>Les systèmes peuvent traiter jusqu'à &lt;b&gt;100 documents par lot&lt;/b&gt; et être configurés pour travailler avec &lt;b&gt;5 documents simultanés&lt;/b&gt; pour plus de vitesse.</value>
+  </data>
+  <data name="Help.Sections.UserGuide.SettingsLink" xml:space="preserve">
+    <value>- (Paramètres) Plus sur le traitement simultané ici.</value>
+  </data>
+  <data name="Help.Sections.UserGuide.TitleShort" xml:space="preserve">
+    <value>Guide utilisateur</value>
+  </data>
+  <data name="Help.Sections.FirstContact.Title" xml:space="preserve">
+    <value>Premier contact</value>
+  </data>
+  <data name="Help.Sections.FirstContact.Paragraph1" xml:space="preserve">
+    <value>DOT (Document Optimizer Tool) est un logiciel de bureau conçu pour &lt;b&gt;automatiser les processus répétitifs&lt;/b&gt; dans les documents et les optimiser afin &lt;b&gt;d'éliminer les retouches&lt;/b&gt;.</value>
+  </data>
+  <data name="Help.Sections.FirstContact.Paragraph2" xml:space="preserve">
+    <value>Ses objectifs sont d'augmenter la productivité en éliminant les retouches et en réduisant les erreurs, de manière &lt;b&gt;pratique, flexible et rapide&lt;/b&gt; à grande échelle.</value>
+  </data>
+  <data name="Help.Sections.FirstContact.Paragraph3" xml:space="preserve">
+    <value>Il dispose de &lt;b&gt;trois systèmes principaux : Markup, Editor et Translator&lt;/b&gt; qui appliquent respectivement des marques, réécrivent des termes et exécutent des routines d'édition flexibles.</value>
+  </data>
+  <data name="Help.Sections.FirstContact.Paragraph4" xml:space="preserve">
+    <value>Les systèmes peuvent traiter jusqu'à &lt;b&gt;100 documents par lot&lt;/b&gt; et être configurés pour travailler avec &lt;b&gt;5 documents simultanés&lt;/b&gt; pour plus de vitesse.</value>
+  </data>
+  <data name="Help.Sections.HowToUse.Title" xml:space="preserve">
+    <value>Comment utiliser</value>
+  </data>
+  <data name="Help.Sections.HowToUse.Paragraph1" xml:space="preserve">
+    <value>&lt;b&gt;Tous les systèmes sont similaires&lt;/b&gt;. Dans l'en-tête se trouvent tous les systèmes DOT ; en bas à droite, le bouton paramètres et notifications ; en bas à gauche, le bouton pour ajouter des fichiers. Les formats acceptés varient selon le système.</value>
+  </data>
+  <data name="Help.Sections.HowToUse.Paragraph2" xml:space="preserve">
+    <value>Le &lt;b&gt;système Markup&lt;/b&gt;, dans la fonction de balisage, prend en charge : PDF, Doc(x), Xls(x) et Ppt(x) ; dans la fonction de réécriture : PDF et Doc(x). L’&lt;b&gt;Éditeur&lt;/b&gt; accepte : PDF et Doc(x). Enfin, le &lt;b&gt;Translator&lt;/b&gt; prend en charge : PDF, Doc(x), Xls(x) et Ppt(x).
+</value>
+  </data>
+  <data name="Help.Sections.HowToUse.Paragraph3" xml:space="preserve">
+    <value>Chaque page a ses spécificités, mais sur la page d'accueil trois cases centrales permettent de configurer des routines ou des tables de marques/réécritures.</value>
+  </data>
+  <data name="Help.Sections.HowToUse.Paragraph4" xml:space="preserve">
+    <value>En sélectionnant un fichier (bouton ou glisser-déposer), vous accédez aux sections pour configurer ou appliquer routines/tables.</value>
+  </data>
+  <data name="Help.Sections.HowToUse.EditorLink" xml:space="preserve">
+    <value>- (Editor) Voir comment configurer une routine.</value>
+  </data>
+  <data name="Help.Sections.HowToUse.MarkerLink1" xml:space="preserve">
+    <value>- (Markup) Voir comment configurer marker.</value>
+  </data>
+  <data name="Help.Sections.HowToUse.MarkerLink2" xml:space="preserve">
+    <value>- (Markup) Voir comment configurer rewrite.</value>
+  </data>
+  <data name="Help.Sections.HowSystemsWork.Title" xml:space="preserve">
+    <value>Fonctionnement des systèmes</value>
+  </data>
+  <data name="Help.Sections.HowSystemsWork.Intro" xml:space="preserve">
+    <value>En général il y a six étapes : conversion, extraction, correction, traitement, optimisation et sauvegarde.</value>
+  </data>
+  <data name="Help.Sections.HowSystemsWork.Step1.Title" xml:space="preserve">
+    <value>1. Conversion : Les fichiers binaires (PDF, Doc, xls, ppt) sont convertis en XML (Docx, Xlsx, Pptx).</value>
+  </data>
+  <data name="Help.Sections.HowSystemsWork.Step1.Description" xml:space="preserve">
+    <value>Pour lecture sans altérer la structure.</value>
+  </data>
+  <data name="Help.Sections.HowSystemsWork.Note1" xml:space="preserve">
+    <value>La conversion utilise le COM &lt;b&gt;Office 365&lt;/b&gt; ; &lt;b&gt;vous devez l'avoir installé&lt;/b&gt; pour convertir.</value>
+  </data>
+  <data name="Help.Sections.HowSystemsWork.Step2.Title" xml:space="preserve">
+    <value>2. Extraction : Le fichier est lu comme zip, les sous-fichiers sont extraits dans un dossier temporaire.</value>
+  </data>
+  <data name="Help.Sections.HowSystemsWork.Step2.Description" xml:space="preserve">
+    <value>Cela permet de garder le fichier original libre.</value>
+  </data>
+  <data name="Help.Sections.HowSystemsWork.Step3.Title" xml:space="preserve">
+    <value>3. Correction : La structure est défragmentée.</value>
+  </data>
+  <data name="Help.Sections.HowSystemsWork.Step3.Description" xml:space="preserve">
+    <value>Ex. 'a/b/ /c/d' → 'ab cd'.</value>
+  </data>
+  <data name="Help.Sections.HowSystemsWork.Step4.Title" xml:space="preserve">
+    <value>4. Traitement : Varie selon le système.</value>
+  </data>
+  <data name="Help.Sections.HowSystemsWork.Step4.Description" xml:space="preserve">
+    <value>Les réglages définis sont appliqués ici.</value>
+  </data>
+  <data name="Help.Sections.HowSystemsWork.Step5.Title" xml:space="preserve">
+    <value>5. Optimisation : Le fichier est nettoyé et les marques appliquées.</value>
+  </data>
+  <data name="Help.Sections.HowSystemsWork.Step5.Description" xml:space="preserve">
+    <value>Prépare le fichier pour la sauvegarde.</value>
+  </data>
+  <data name="Help.Sections.HowSystemsWork.Step6.Title" xml:space="preserve">
+    <value>6. Sauvegarde : Les fichiers temporaires sont recompilés et enregistrés.</value>
+  </data>
+  <data name="Help.Sections.HowSystemsWork.Step6.Description" xml:space="preserve">
+    <value>Enregistrés en Docx, Xlsx ou Pptx selon les originaux.</value>
+  </data>
+  <data name="Help.Sections.SupportedExtensions.Title" xml:space="preserve">
+    <value>Extensions prises en charge</value>
+  </data>
+  <data name="Help.Sections.SupportedExtensions.Markup" xml:space="preserve">
+    <value>&lt;b&gt;Système Markup :&lt;/b&gt;&lt;br /&gt;- Marker : PDF, Doc(x), Xls(x), Ppt(x) ;&lt;br /&gt;- Rewrite : PDF, Doc(x) ;&lt;br /&gt;- Importer marker : CSV ;&lt;br /&gt;- Importer glossaire : CSV.</value>
+  </data>
+  <data name="Help.Sections.SupportedExtensions.Editor" xml:space="preserve">
+    <value>&lt;b&gt;Système Editor :&lt;/b&gt;&lt;br /&gt;- Toutes les fonctions : PDF, Doc(x).</value>
+  </data>
+  <data name="Help.Sections.SupportedExtensions.Translator" xml:space="preserve">
+    <value>&lt;b&gt;Système Translator :&lt;/b&gt;&lt;br /&gt;- Accepte : PDF, Doc(x), Xls(x), Ppt(x) .</value>
+  </data>
+  <data name="Help.Sections.Markup.Title" xml:space="preserve">
+    <value>Markup</value>
+  </data>
+  <data name="Help.Sections.Markup.Overview.Title" xml:space="preserve">
+    <value>Aperçu général</value>
+  </data>
+  <data name="Help.Sections.Markup.Overview.Paragraph1" xml:space="preserve">
+    <value>Le système Markup a été conçu pour réduire le temps de relecture grâce à des optimisations à grande échelle. Il comporte deux fonctions : marker et rewrite.</value>
+  </data>
+  <data name="Help.Sections.Markup.Marker.Title" xml:space="preserve">
+    <value>Marker</value>
+  </data>
+  <data name="Help.Sections.Markup.Marker.Paragraph1" xml:space="preserve">
+    <value>Marker aide à vérifier les termes du document. Ex. : une liste de termes techniques à contrôler, le système les surligne en rouge.</value>
+  </data>
+  <data name="Help.Sections.Markup.Marker.Paragraph2" xml:space="preserve">
+    <value>Autre cas : termes fréquemment erronés que vous voulez signaler.</value>
+  </data>
+  <data name="Help.Sections.Markup.Marker.HowToSetup" xml:space="preserve">
+    <value>Comment configurer marker ?</value>
+  </data>
+  <data name="Help.Sections.Markup.Marker.SetupDescription" xml:space="preserve">
+    <value>Créez d'abord une table de marques dans la section créer/vocabulaire ; manuellement ou via CSV.</value>
+  </data>
+  <data name="Help.Sections.Markup.Marker.FileLimitNote" xml:space="preserve">
+    <value>Pas de limite de marques, mais plus il y en a, plus c'est long. Structure :</value>
+  </data>
+  <data name="Help.Sections.Markup.Marker.Table.SourceTerms" xml:space="preserve">
+    <value>Nom du marqueur</value>
+  </data>
+  <data name="Help.Sections.Markup.Marker.ExampleTerm1" xml:space="preserve">
+    <value>1re marque</value>
+  </data>
+  <data name="Help.Sections.Markup.Marker.ExampleTerm2" xml:space="preserve">
+    <value>2e marque</value>
+  </data>
+  <data name="Help.Sections.Markup.Marker.ExampleTerm3" xml:space="preserve">
+    <value>3e marque</value>
+  </data>
+  <data name="Help.Sections.Markup.Marker.ColumnNote" xml:space="preserve">
+    <value>Plusieurs colonnes → chaque colonne devient un marker. Si noms en double, seul le dernier est pris.</value>
+  </data>
+  <data name="Help.Sections.Markup.Marker.ManualCreate" xml:space="preserve">
+    <value>En créant manuellement, après Cliquer sur créer, table vide à gauche ; en-tête : nom + filtre ; centre : termes listés.</value>
+  </data>
+  <data name="Help.Sections.Markup.Marker.ManualCreateNote" xml:space="preserve">
+    <value>Ajouter un terme : bouton ajouter ; pour sauvegarder : nom + au moins un terme.</value>
+  </data>
+  <data name="Help.Sections.Markup.Marker.HowToEdit" xml:space="preserve">
+    <value>Modifier marker : section éditer/traiter, choisissez le marker, modifiez/supprimez ou effacez la table.</value>
+  </data>
+  <data name="Help.Sections.Markup.Marker.HowToApply" xml:space="preserve">
+    <value>Appliquer marker : sélectionnez des documents, process, choisissez marker et dossier de sortie. Notification à la fin.</value>
+  </data>
+  <data name="Help.Sections.Markup.Rewrite.Title" xml:space="preserve">
+    <value>Rewrite</value>
+  </data>
+  <data name="Help.Sections.Markup.Rewrite.Paragraph1" xml:space="preserve">
+    <value>Rewrite optimise le texte pour réduire les erreurs. Ex. : termes mal traduits remplacés automatiquement.</value>
+  </data>
+  <data name="Help.Sections.Markup.Rewrite.Paragraph2" xml:space="preserve">
+    <value>Autre utilisation : optimiser les traductions sans glossaires en corrigeant avant la traduction.</value>
+  </data>
+  <data name="Help.Sections.Markup.Rewrite.HowToSetup" xml:space="preserve">
+    <value>Créer un glossaire</value>
+  </data>
+  <data name="Help.Sections.Markup.Rewrite.SetupDescription" xml:space="preserve">
+    <value>La table de paires est appelée glossaire (deux colonnes). Créez-la manuellement ou CSV.</value>
+  </data>
+  <data name="Help.Sections.Markup.Rewrite.FileLimitNote" xml:space="preserve">
+    <value>Pas de limite, mais plus = plus long. Structure :</value>
+  </data>
+  <data name="Help.Sections.Markup.Rewrite.Table.SourceTerms" xml:space="preserve">
+    <value>Colonne source</value>
+  </data>
+  <data name="Help.Sections.Markup.Rewrite.Table.TargetTerms" xml:space="preserve">
+    <value>Colonne cible</value>
+  </data>
+  <data name="Help.Sections.Markup.Rewrite.ExampleSource1" xml:space="preserve">
+    <value>1er terme</value>
+  </data>
+  <data name="Help.Sections.Markup.Rewrite.ExampleTarget1" xml:space="preserve">
+    <value>1er nouveau</value>
+  </data>
+  <data name="Help.Sections.Markup.Rewrite.ExampleSource2" xml:space="preserve">
+    <value>2e terme</value>
+  </data>
+  <data name="Help.Sections.Markup.Rewrite.ExampleTarget2" xml:space="preserve">
+    <value>2e nouveau</value>
+  </data>
+  <data name="Help.Sections.Markup.Rewrite.ExampleSource3" xml:space="preserve">
+    <value>3e terme</value>
+  </data>
+  <data name="Help.Sections.Markup.Rewrite.ExampleTarget3" xml:space="preserve">
+    <value>3e nouveau</value>
+  </data>
+  <data name="Help.Sections.Markup.Rewrite.ColumnsPermutationNote" xml:space="preserve">
+    <value>Plusieurs colonnes → permutations de toutes les combinaisons.</value>
+  </data>
+  <data name="Help.Sections.Markup.Rewrite.ManualCreateNote" xml:space="preserve">
+    <value>Manuel : chaque ligne = une paire. Pour sauvegarder : nom + au moins une paire.</value>
+  </data>
+  <data name="Help.Sections.Markup.Rewrite.HowToEditApply" xml:space="preserve">
+    <value>Éditer/appliquer : choisissez le glossaire dans éditer/traiter; pour appliquer, sélectionnez documents, process, choisissez glossaire et dossier.] &gt;</value>
+  </data>
+  <data name="Help.Sections.Editor.Title" xml:space="preserve">
+    <value>Editor</value>
+  </data>
+  <data name="Help.Sections.Editor.Overview.Title" xml:space="preserve">
+    <value>Vue d'ensemble</value>
+  </data>
+  <data name="Help.Sections.Editor.Overview.Paragraph1" xml:space="preserve">
+    <value>Editor automatise les tâches d'édition répétitives avec plusieurs fonctions.</value>
+  </data>
+  <data name="Help.Sections.Editor.Overview.Paragraph2" xml:space="preserve">
+    <value>Actuellement deux principales et deux en développement : rewrite, éditer paragraphes, remplacer en-têtes/pieds, changer couleurs.</value>
+  </data>
+  <data name="Help.Sections.Editor.Overview.Paragraph3" xml:space="preserve">
+    <value>La structure de la page est similaire à celle des marqueurs. Sans documents, options : créer, éditer, FAQ.</value>
+  </data>
+  <data name="Help.Sections.Editor.Overview.HowToSetup.Title" xml:space="preserve">
+    <value>Créer une routine</value>
+  </data>
+  <data name="Help.Sections.Editor.Overview.HowToSetup.Desc" xml:space="preserve">
+    <value>Cliquez sur « Créer », choisissez la fonction, configurez et nommez la routine.</value>
+  </data>
+  <data name="Help.Sections.Editor.Overview.HowToEdit.Title" xml:space="preserve">
+    <value>Éditer une routine</value>
+  </data>
+  <data name="Help.Sections.Editor.Overview.HowToEdit.Desc" xml:space="preserve">
+    <value>Dans éditer/application, sélectionnez la routine et ses réglages se chargent.</value>
+  </data>
+  <data name="Help.Sections.Editor.Overview.HowToApply.Title" xml:space="preserve">
+    <value>Appliquer une routine</value>
+  </data>
+  <data name="Help.Sections.Editor.Overview.HowToApply.Desc" xml:space="preserve">
+    <value>Sélectionnez au moins un document puis, dans application, choisissez la routine.</value>
+  </data>
+  <data name="Help.Sections.Editor.Rewrite.Title" xml:space="preserve">
+    <value>Fonction rewrite</value>
+  </data>
+  <data name="Help.Sections.Editor.Rewrite.Paragraph1" xml:space="preserve">
+    <value>Recherche un texte (≤200 caractères), le remplace et applique un style.</value>
+  </data>
+  <data name="Help.Sections.Editor.Rewrite.Paragraph2" xml:space="preserve">
+    <value>Ex. : réécrire un modèle dans un format spécifique.</value>
+  </data>
+  <data name="Help.Sections.Editor.Paragraph.Title" xml:space="preserve">
+    <value>Fonction paragraphe</value>
+  </data>
+  <data name="Help.Sections.Editor.Paragraph.Paragraph1" xml:space="preserve">
+    <value>Applique un style par défaut au corps ; contrôle où appliquer.</value>
+  </data>
+  <data name="Help.Sections.Editor.Paragraph.Paragraph2" xml:space="preserve">
+    <value>Duplication de paragraphe : duplique avec le texte donné ; ignorer nombres : exclut textes sans mots.</value>
+  </data>
+  <data name="Help.Sections.Editor.Paragraph.Paragraph3" xml:space="preserve">
+    <value>Ex. : appliquer un style standard sur tout le document.</value>
+  </data>
+  <data name="Help.Sections.Translator.Title" xml:space="preserve">
+    <value>Translator</value>
+  </data>
+  <data name="Help.Sections.Translator.Overview.Title" xml:space="preserve">
+    <value>Vue d'ensemble</value>
+  </data>
+  <data name="Help.Sections.Translator.Overview.Paragraph1" xml:space="preserve">
+    <value>Pour utiliser le système de traduction, il suffit de sélectionner les fichiers que vous souhaitez traduire sur la page d’accueil ou de traitement, de choisir la langue cible et de cliquer sur le bouton Traduire.</value>
+  </data>
+  <data name="Help.Sections.Settings.Title" xml:space="preserve">
+    <value>Paramètres</value>
+  </data>
+  <data name="Help.Sections.Settings.Overview.Title" xml:space="preserve">
+    <value>Vue d'ensemble</value>
+  </data>
+  <data name="Help.Sections.Settings.Overview.Paragraph1" xml:space="preserve">
+    <value>Cliquez sur l'icône engrenage (coin inférieur droit) ouvre une section avec liste de notifications et bouton paramètres.</value>
+  </data>
+  <data name="Help.Sections.Settings.Overview.NotificationsLink" xml:space="preserve">
+    <value>- (Paramètres) Plus sur les notifications.</value>
+  </data>
+  <data name="Help.Sections.Settings.Overview.Paragraph2" xml:space="preserve">
+    <value>Dans la page paramètres, on peut changer le thème et la langue (EN, PT, ES, FR).</value>
+  </data>
+  <data name="Help.Sections.Settings.Overview.Paragraph3" xml:space="preserve">
+    <value>Configurer aussi la visibilité des notifications haute priorité et le nombre de documents simultanés.</value>
+  </data>
+  <data name="Help.Sections.Settings.Overview.Paragraph4" xml:space="preserve">
+    <value>Plus de documents = plus rapide ; sur PC faible laissez 2-3.</value>
+  </data>
+  <data name="Help.Sections.Settings.Overview.Paragraph5" xml:space="preserve">
+    <value>La section info montre des données système. Dernière section : accès au DOT Manager.</value>
+  </data>
+  <data name="Help.Sections.Settings.Notifications.Title" xml:space="preserve">
+    <value>Notifications</value>
+  </data>
+  <data name="Help.Sections.Settings.Notifications.Paragraph1" xml:space="preserve">
+    <value>Le système avertit via trois canaux : notifications basse priorité, haute priorité et sur l'appareil.</value>
+  </data>
+  <data name="Help.Sections.Settings.Notifications.Paragraph2" xml:space="preserve">
+    <value>Basse priorité : dans le bouton paramètres. Générées par changements dans marqueurs/glossaires et paramètres. Liste effaçable.</value>
+  </data>
+  <data name="Help.Sections.Settings.Notifications.Paragraph3" xml:space="preserve">
+    <value>Haute priorité : générées par le traitement de fichiers (début/fin) ou changement de notifications ; purement visuel.</value>
+  </data>
+  <data name="Help.Sections.Settings.DOTManager.Title" xml:space="preserve">
+    <value>DOT Manager</value>
+  </data>
+  <data name="Help.Sections.Settings.DOTManager.Paragraph1" xml:space="preserve">
+    <value>DOT Manager est une application de support pour maintenir le système à jour, réparer, installer/désinstaller.</value>
+  </data>
+  <data name="Help.Sections.Settings.DOTManager.Paragraph2" xml:space="preserve">
+    <value>DOT n'en dépend pas mais en a besoin pour nouvelles fonctions, correctifs et performance.</value>
+  </data>
+  <data name="Help.Sections.Settings.DOTManager.Paragraph3" xml:space="preserve">
+    <value>Si vous avez installé DOT avec, ouvrez-le via : Panneau de configuration &gt; Désinstaller un programme &gt; DOT &gt; Réparer ; ou depuis Paramètres, dernière section, lancer DOT Manager.</value>
+  </data>
+  <data name="Help.Sections.Others.Title" xml:space="preserve">
+    <value>Autres</value>
+  </data>
+  <data name="Help.Sections.ChangeLog.Title" xml:space="preserve">
+    <value>Journal des modifications</value>
+  </data>
+  <data name="Help.Sections.ChangeLog.Release31" xml:space="preserve">
+    <value>Version 3.1 (s3.3.4) - Juillet 2025</value>
+  </data>
+  <data name="Help.Sections.ChangeLog.Release31.Items" xml:space="preserve">
+    <value>- Création du système d''aide
+- Nouvelle fonction d'édition : remplacement
+- Ajustement de la fonction couleur</value>
+  </data>
+  <data name="Help.Sections.ChangeLog.Release30" xml:space="preserve">
+    <value>Version 3.0 (s3.1.3) - Mai 2025</value>
+  </data>
+  <data name="Help.Sections.ChangeLog.Release30.Items" xml:space="preserve">
+    <value>- Refonte de l'interface avec modèle GEV
+- Flexibilité des marqueurs/glossaires
+- Ajout du français
+- Optimisation générale</value>
+  </data>
+  <data name="Help.Introduction.Title" xml:space="preserve">
+    <value>Zone d'aide</value>
+  </data>
+  <data name="Help.Introduction.Description" xml:space="preserve">
+    <value>Bienvenue dans la zone d’assistance ! Vous trouverez ici toute la documentation et les guides pour vous aider à utiliser le système. Si vous avez encore des questions, vous pouvez nous envoyer un message directement via la section FAQ.</value>
+  </data>
+  <data name="NavTabs.Journal" xml:space="preserve">
+    <value>Actualités</value>
+  </data>
+  <data name="NavTabs.Processing" xml:space="preserve">
+    <value>Traitement</value>
+  </data>
+  <data name="NavTabs.Notifications" xml:space="preserve">
+    <value>Notifications</value>
+  </data>
+  <data name="Home.Journal.Title" xml:space="preserve">
+    <value>Découvrez les nouveautés</value>
+  </data>
+  <data name="Home.Journal.Description" xml:space="preserve">
+    <value>Ci-dessous les nouvelles fonctionnalités du système, chacune dans sa propre section.</value>
+  </data>
+  <data name="Home.Processing.Title" xml:space="preserve">
+    <value>Traitez vos fichiers</value>
+  </data>
+  <data name="Home.Processing.Description" xml:space="preserve">
+    <value>Sélectionnez les documents à traiter et choisissez quel système les utilisera.</value>
+  </data>
+  <data name="Home.Processing.Actions.Title" xml:space="preserve">
+    <value>2. Actions : Choisissez le système que vous souhaitez utiliser</value>
+  </data>
+  <data name="Home.Processing.Actions.Editor.Name" xml:space="preserve">
+    <value>Sistema de Edición</value>
+  </data>
+  <data name="Home.Processing.Actions.Editor.Description" xml:space="preserve">
+    <value>Modifiez rapidement le texte ou la structure de vos fichiers.</value>
+  </data>
+  <data name="Home.Processing.Actions.Marker.Name" xml:space="preserve">
+    <value>Système de Marquage</value>
+  </data>
+  <data name="Home.Processing.Actions.Marker.Description" xml:space="preserve">
+    <value>Modifiez rapidement le texte ou la structure de vos fichiers.</value>
+  </data>
+  <data name="Home.Processing.Actions.Translator.Name" xml:space="preserve">
+    <value>Sistema de Traducción</value>
+  </data>
+  <data name="Home.Processing.Actions.Translator.Description" xml:space="preserve">
+    <value>Traduisez vos fichiers avec précision et rapidité.</value>
+  </data>
+  <data name="Home.Journal.News.Title" xml:space="preserve">
+    <value>Nouvelles mises à jour</value>
+  </data>
+  <data name="Home.Journal.News.Text" xml:space="preserve">
+    <value>Le système de traduction est désormais disponible et prend en charge la traduction technique à l’aide de glossaires. De plus, il est maintenant possible de générer des documents avec le système de création de documents, offrant une plus grande précision grâce aux modèles. La zone d’assistance a également été mise à jour avec de nouvelles informations sur l’utilisation des systèmes !</value>
+  </data>
+  <data name="Notifications.Empty" xml:space="preserve">
+    <value>Aucune notification.</value>
+  </data>
+  <data name="GridOptionsFileList.Title" xml:space="preserve">
+    <value>1. Fichiers : Supprimez des fichiers, ajoutez-en ou vérifiez leur progression de traitement</value>
+  </data>
+  <data name="GridOptionsFileList.Add.Name" xml:space="preserve">
+    <value>Ajouter des fichiers</value>
+  </data>
+  <data name="GridOptionsFileList.Add.Description" xml:space="preserve">
+    <value>Ajoutez d’autres fichiers à traiter</value>
+  </data>
+  <data name="GridOptionsFileList.RemoveAll.Name" xml:space="preserve">
+    <value>Tout supprimer</value>
+  </data>
+  <data name="GridOptionsFileList.SelectFiles" xml:space="preserve">
+    <value>Sélectionner des fichiers</value>
+  </data>
+  <data name="GridOptionsFileList.RemoveAll.Description" xml:space="preserve">
+    <value>Effacer tous les fichiers de la liste</value>
+  </data>
+  <data name="GridOptionsFileList.ClearList" xml:space="preserve">
+    <value>Effacer la liste</value>
+  </data>
+  <data name="Help.Introduction.Button" xml:space="preserve">
+    <value>Consultez la FAQ pour répondre à vos questions</value>
+  </data>
+  <data name="Home.Processing.Actions.Blocked" xml:space="preserve">
+    <value>2. Actions : Pour continuer, sélectionnez les fichiers à l’étape ci-dessous</value>
+  </data>
+  <data name="Marker.Introduction.Title" xml:space="preserve">
+    <value>Système de Marquage</value>
+  </data>
+  <data name="Marker.Introduction.Description" xml:space="preserve">
+    <value>Ici, vous pouvez rapidement marquer les termes dans vos documents pour réduire le temps de révision, et vous pouvez également remplacer des termes ! Pour cela, vous pouvez créer des marqueurs (marquer uniquement) ou des glossaires (remplacer et marquer), qui peuvent être importés ou créés manuellement dans la zone de création.</value>
+  </data>
+  <data name="Introduction.Button" xml:space="preserve">
+    <value>Sélectionnez des fichiers ou glissez-déposez-les</value>
+  </data>
+  <data name="NavTabs.Home" xml:space="preserve">
+    <value>Accueil</value>
+  </data>
+  <data name="NavTabs.Documentation" xml:space="preserve">
+    <value>Documentation</value>
+  </data>
+  <data name="NavTabs.Create" xml:space="preserve">
+    <value>Créer</value>
+  </data>
+  <data name="Markup.Create.Title" xml:space="preserve">
+    <value>Créer un marqueur ou un glossaire</value>
+  </data>
+  <data name="Markup.Create.Description" xml:space="preserve">
+    <value>Ci-dessous, vous pouvez créer un glossaire ou un marqueur à utiliser dans le système de marquage de la zone de traitement. Si vous en avez déjà un, vous pouvez le modifier au même endroit.</value>
+  </data>
+  <data name="Markup.Create.Marker.Title" xml:space="preserve">
+    <value>Créer des marqueurs</value>
+  </data>
+  <data name="Markup.Create.Marker.Text" xml:space="preserve">
+    <value>Les marqueurs seront utilisés pour mettre en évidence des mots dans le document. Ici, vous pouvez créer ou modifier vos marqueurs.</value>
+  </data>
+  <data name="Markup.Create.Glossary.Title" xml:space="preserve">
+    <value>Créer des glossaires</value>
+  </data>
+  <data name="Markup.Create.Glossary.Text" xml:space="preserve">
+    <value>Les glossaires sont utilisés pour remplacer des mots dans le texte, puis pour mettre en évidence le texte modifié afin de le mettre en valeur.</value>
+  </data>
+  <data name="Create.Create.Button" xml:space="preserve">
+    <value>Créer</value>
+  </data>
+  <data name="Create.Choose.Button" xml:space="preserve">
+    <value>Choisir</value>
+  </data>
+  <data name="Processing.Title" xml:space="preserve">
+    <value>Traitez vos fichiers</value>
+  </data>
+  <data name="Markup.Processing.Description" xml:space="preserve">
+    <value>Sélectionnez les documents à traiter, créez un marqueur ou un glossaire et appliquez-les.</value>
+  </data>
+  <data name="Processing.Applying.Title" xml:space="preserve">
+    <value>2. Application : Choisissez le glossaire ou le marqueur que vous souhaitez utiliser</value>
+  </data>
+  <data name="Processing.Applying.Title.Blocked" xml:space="preserve">
+    <value>2. Application : Pour continuer, sélectionnez les fichiers à l’étape précédente.</value>
+  </data>
+  <data name="Processing.Creation.Button" xml:space="preserve">
+    <value>Créer</value>
+  </data>
+  <data name="Processing.Creation.Name" xml:space="preserve">
+    <value>Création</value>
+  </data>
+  <data name="Markup.Processing.Creation.Description" xml:space="preserve">
+    <value>Créez un marqueur ou un glossaire pour commencer à utiliser le système</value>
+  </data>
+  <data name="Processing.Applying.Name" xml:space="preserve">
+    <value>Traiter les fichiers</value>
+  </data>
+  <data name="Markup.Processing.Applying.Description" xml:space="preserve">
+    <value>Choisissez le glossaire ou le marqueur que vous souhaitez utiliser</value>
+  </data>
+  <data name="Processing.Applying.Choose" xml:space="preserve">
+    <value>Choisir</value>
+  </data>
+  <data name="Processing.Applying.Choose.Glossary" xml:space="preserve">
+    <value>Glossaire</value>
+  </data>
+  <data name="Processing.Applying.Choose.Marker" xml:space="preserve">
+    <value>Marqueur</value>
+  </data>
+  <data name="GridOptionsFileList.Stop.Name" xml:space="preserve">
+    <value>Arrêter le traitement</value>
+  </data>
+  <data name="GridOptionsFileList.Stop.Description" xml:space="preserve">
+    <value>Arrête le traitement des fichiers téléchargés</value>
+  </data>
+  <data name="GridOptionsFileList.Stop.Button" xml:space="preserve">
+    <value>Arrêter</value>
+  </data>
+  <data name="Create.External.Import.Button" xml:space="preserve">
+    <value>Importer</value>
+  </data>
+  <data name="Create.External.Title" xml:space="preserve">
+    <value>Importer et Exporter</value>
+  </data>
+  <data name="Create.External.Export.Button" xml:space="preserve">
+    <value>Exporter</value>
+  </data>
+  <data name="Markup.Create.External.Text" xml:space="preserve">
+    <value>Vous pouvez importer des glossaires ou des marqueurs à partir d’un fichier CSV ou Excel et partager vos glossaires et marqueurs avec d’autres</value>
+  </data>
+  <data name="Markup.Create.Table.Title.Marker" xml:space="preserve">
+    <value>Table des marqueurs</value>
+  </data>
+  <data name="Markup.Create.Table.Title.Glossary" xml:space="preserve">
+    <value>Table de glossaire</value>
+  </data>
+  <data name="Markup.Create.Table.Description" xml:space="preserve">
+    <value>Pour commencer, cliquez sur le bouton « Ajouter une ligne » pour inclure des termes dans votre table. À gauche se trouve le terme source et à droite le terme cible.</value>
+  </data>
+  <data name="Create.Name.Field" xml:space="preserve">
+    <value>Nom de la table :</value>
+  </data>
+  <data name="Create.Description.Field" xml:space="preserve">
+    <value>Description :</value>
+  </data>
+  <data name="Create.Save.Button" xml:space="preserve">
+    <value>Enregistrer</value>
+  </data>
+  <data name="Markup.Create.Table.AddRow" xml:space="preserve">
+    <value>Ajouter une ligne</value>
+  </data>
+  <data name="Create.Cancel.Button" xml:space="preserve">
+    <value>Annuler</value>
+  </data>
+  <data name="Create.Delete.Button" xml:space="preserve">
+    <value>Supprimer</value>
+  </data>
+  <data name="Markup.Create.Table.Filter" xml:space="preserve">
+    <value>Filtre</value>
+  </data>
+  <data name="Markup.Create.Table.SourceTerm" xml:space="preserve">
+    <value>Terme source</value>
+  </data>
+  <data name="Markup.Create.Table.TargetTerm" xml:space="preserve">
+    <value>Terme cible</value>
+  </data>
+  <data name="TableFactory.Default_name" xml:space="preserve">
+    <value>Nouvelle table</value>
+  </data>
+  <data name="TableFactory.Imported_name" xml:space="preserve">
+    <value>Table importée</value>
+  </data>
+  <data name="TableFactory.Invalid_file" xml:space="preserve">
+    <value>Fichier non valide, vide ou corrompu.</value>
+  </data>
+  <data name="TableFactory.Unsupported_type" xml:space="preserve">
+    <value>Type de table non pris en charge :</value>
+  </data>
+  <data name="TableFactory.Load_fail" xml:space="preserve">
+    <value>Échec du chargement des tables :</value>
+  </data>
+  <data name="TableFactory.Table.Share_erro" xml:space="preserve">
+    <value>Erreur lors du partage de la table :</value>
+  </data>
+  <data name="TableFactory.Table.Share" xml:space="preserve">
+    <value>Partager la table</value>
+  </data>
+  <data name="TableFactory.TableJsonConverter.Read_error" xml:space="preserve">
+    <value>Type de table inconnu après inférence :</value>
+  </data>
+  <data name="TableFactory.TableJsonConverter.Write_error" xml:space="preserve">
+    <value>Type de table non pris en charge :</value>
+  </data>
+  <data name="Editor.Create.Title" xml:space="preserve">
+    <value>Créer une Routine</value>
+  </data>
+  <data name="Editor.Create.Description" xml:space="preserve">
+    <value>Ci-dessous, vous pouvez créer une routine pour modifier vos documents ainsi que modifier des routines précédemment créées. Vous pouvez également partager ou importer une routine existante.</value>
+  </data>
+  <data name="Editor.Create.EditTexts.Title" xml:space="preserve">
+    <value>Modifier les Textes</value>
+  </data>
+  <data name="Editor.Create.EditTexts.Text" xml:space="preserve">
+    <value>Sélectionnez le texte que vous souhaitez modifier puis ajustez ses propriétés.</value>
+  </data>
+  <data name="Editor.Create.EditParagraphs.Title" xml:space="preserve">
+    <value>Modifier les Paragraphes</value>
+  </data>
+  <data name="Editor.Create.EditParagraphs.Text" xml:space="preserve">
+    <value>Modifiez les paragraphes de manière générique puis ajustez leurs propriétés.</value>
+  </data>
+  <data name="Editor.Create.EditColorGap.Title" xml:space="preserve">
+    <value>Modifier l'Écart de Couleur</value>
+  </data>
+  <data name="Editor.Create.EditColorGap.Text" xml:space="preserve">
+    <value>Sélectionnez deux couleurs différentes ; les textes dont la couleur est dans l'écart seront affectés.</value>
+  </data>
+  <data name="Editor.Create.ReplaceImages.Title" xml:space="preserve">
+    <value>Remplacer les Images</value>
+  </data>
+  <data name="Editor.Create.ReplaceImages.Text" xml:space="preserve">
+    <value>Sélectionnez des images ou des documents contenant des images et définissez quelle image les remplacera.</value>
+  </data>
+  <data name="Editor.Create.External.Title" xml:space="preserve">
+    <value>Externe</value>
+  </data>
+  <data name="Editor.Create.External.Text" xml:space="preserve">
+    <value>Vous pouvez importer des routines et les partager avec votre équipe.</value>
+  </data>
+  <data name="Editor.Action.Create" xml:space="preserve">
+    <value>Créer</value>
+  </data>
+  <data name="Editor.Action.Choose" xml:space="preserve">
+    <value>Choisir</value>
+  </data>
+  <data name="Editor.Action.Import" xml:space="preserve">
+    <value>Importer</value>
+  </data>
+  <data name="Editor.Action.Export" xml:space="preserve">
+    <value>Exporter</value>
+  </data>
+  <data name="Editor.Action.Save" xml:space="preserve">
+    <value>Enregistrer</value>
+  </data>
+  <data name="Editor.Action.Cancel" xml:space="preserve">
+    <value>Annuler</value>
+  </data>
+  <data name="Editor.Action.Delete" xml:space="preserve">
+    <value>Supprimer</value>
+  </data>
+  <data name="Editor.Create.Name.Field" xml:space="preserve">
+    <value>Nom</value>
+  </data>
+  <data name="Editor.Create.Description.Field" xml:space="preserve">
+    <value>Description</value>
+  </data>
+  <data name="Editor.Create.Name.Validation" xml:space="preserve">
+    <value>Veuillez choisir un nom pour la routine.</value>
+  </data>
+  <data name="Editor.Create.OldLabel" xml:space="preserve">
+    <value>Ancien</value>
+  </data>
+  <data name="Editor.Create.NewLabel" xml:space="preserve">
+    <value>Nouveau</value>
+  </data>
+  <data name="Editor.Target.Texts.Title" xml:space="preserve">
+    <value>Cible : Définir le texte à affecter</value>
+  </data>
+  <data name="Editor.Target.Texts.SourceName" xml:space="preserve">
+    <value>Texte Source</value>
+  </data>
+  <data name="Editor.Target.Texts.SourceDescription" xml:space="preserve">
+    <value>Le texte dans le document qui sera remplacé</value>
+  </data>
+  <data name="Editor.Target.Texts.TargetName" xml:space="preserve">
+    <value>Texte Cible</value>
+  </data>
+  <data name="Editor.Target.Texts.TargetDescription" xml:space="preserve">
+    <value>Le texte qui remplacera l'ancien</value>
+  </data>
+  <data name="Editor.Options.IgnoreNumbers.Name" xml:space="preserve">
+    <value>Ignorer les Nombres</value>
+  </data>
+  <data name="Editor.Options.IgnoreNumbers.Description" xml:space="preserve">
+    <value>Les textes composés uniquement de chiffres seront ignorés</value>
+  </data>
+  <data name="Editor.Options.DuplicateInParagraph.Name" xml:space="preserve">
+    <value>Dupliquer dans le Paragraphe</value>
+  </data>
+  <data name="Editor.Options.DuplicateInParagraph.Description" xml:space="preserve">
+    <value>Les textes affectés seront dupliqués sous l'original</value>
+  </data>
+  <data name="Editor.GapColor.Title" xml:space="preserve">
+    <value>Cible : Définir l'écart à affecter</value>
+  </data>
+  <data name="Editor.GapColor.Name" xml:space="preserve">
+    <value>Écart de Couleur</value>
+  </data>
+  <data name="Editor.GapColor.Description" xml:space="preserve">
+    <value>Sélectionnez les couleurs de début et de fin qui définissent l'écart.</value>
+  </data>
+  <data name="Editor.GapColor.Start" xml:space="preserve">
+    <value>Début:</value>
+  </data>
+  <data name="Editor.GapColor.End" xml:space="preserve">
+    <value>Fin:</value>
+  </data>
+  <data name="Editor.ReplaceImages.SourceName" xml:space="preserve">
+    <value>Images Source</value>
+  </data>
+  <data name="Editor.ReplaceImages.SourceDescription" xml:space="preserve">
+    <value>Les images du document qui seront remplacées</value>
+  </data>
+  <data name="Editor.ReplaceImages.TargetName" xml:space="preserve">
+    <value>Image Cible</value>
+  </data>
+  <data name="Editor.ReplaceImages.TargetDescription" xml:space="preserve">
+    <value>L'image qui remplacera les anciennes</value>
+  </data>
+  <data name="Editor.TextStyle.Title" xml:space="preserve">
+    <value>Style de Texte : Les textes affectés verront ces propriétés modifiées</value>
+  </data>
+  <data name="Editor.TextStyle.FontSize.Name" xml:space="preserve">
+    <value>Changer la Taille de Police</value>
+  </data>
+  <data name="Editor.TextStyle.FontSize.Description" xml:space="preserve">
+    <value>Si la valeur est zéro, la valeur par défaut sera utilisée.</value>
+  </data>
+  <data name="Editor.TextStyle.Bold.Name" xml:space="preserve">
+    <value>Changer Gras</value>
+  </data>
+  <data name="Editor.TextStyle.Bold.Description" xml:space="preserve">
+    <value>La valeur par défaut reste telle quelle</value>
+  </data>
+  <data name="Editor.TextStyle.Italic.Name" xml:space="preserve">
+    <value>Changer Italique</value>
+  </data>
+  <data name="Editor.TextStyle.Italic.Description" xml:space="preserve">
+    <value>La valeur par défaut reste telle quelle</value>
+  </data>
+  <data name="Editor.TextStyle.Color.Name" xml:space="preserve">
+    <value>Changer la Couleur</value>
+  </data>
+  <data name="Editor.TextStyle.Color.Description" xml:space="preserve">
+    <value>Pour activer, cochez la case à côté du bouton</value>
+  </data>
+  <data name="Editor.TextStyle.Color.Enable" xml:space="preserve">
+    <value>Activer la couleur</value>
+  </data>
+  <data name="Editor.Option.Auto" xml:space="preserve">
+    <value>Automatique</value>
+  </data>
+  <data name="Editor.Option.On" xml:space="preserve">
+    <value>Activé</value>
+  </data>
+  <data name="Editor.Option.Off" xml:space="preserve">
+    <value>Désactivé</value>
+  </data>
+  <data name="Editor.Settings.Title" xml:space="preserve">
+    <value>Paramètres : Définir où le système peut éditer</value>
+  </data>
+  <data name="Editor.Settings.ApplyOnElements.Name" xml:space="preserve">
+    <value>Appliquer sur les Éléments</value>
+  </data>
+  <data name="Editor.Settings.ApplyOnElements.Description" xml:space="preserve">
+    <value>Des éléments comme les tableaux, zones de texte et autres peuvent être affectés</value>
+  </data>
+  <data name="Editor.Settings.ApplyOnHeaders.Name" xml:space="preserve">
+    <value>Appliquer sur les En-têtes</value>
+  </data>
+  <data name="Editor.Settings.ApplyOnHeaders.Description" xml:space="preserve">
+    <value>Tout en-tête peut être affecté</value>
+  </data>
+  <data name="Editor.Settings.ApplyOnFooters.Name" xml:space="preserve">
+    <value>Appliquer sur les Pieds de Page</value>
+  </data>
+  <data name="Editor.Settings.ApplyOnFooters.Description" xml:space="preserve">
+    <value>Tout pied de page peut être affecté</value>
+  </data>
+  <data name="Editor.Introduction.Title" xml:space="preserve">
+    <value>Système d'Éditeur</value>
+  </data>
+  <data name="Editor.Introduction.Description" xml:space="preserve">
+    <value>Dans ce système, vous pouvez créer des routines qui affectent le texte ou les éléments du document. Par exemple, vous pouvez remplacer des images, réécrire des pieds de page avec des styles spécifiques, ou modifier l'ensemble du corps du document.</value>
+  </data>
+  <data name="Editor.Placeholder.Comment" xml:space="preserve">
+    <value>Laissez un commentaire ici</value>
+  </data>
+  <data name="Editor.Processing.Description" xml:space="preserve">
+    <value>Sélectionnez au moins un document et choisissez la routine à appliquer.</value>
+  </data>
+  <data name="Editor.Processing.Creation.Description" xml:space="preserve">
+    <value>Créez une routine pour pouvoir traiter les fichiers</value>
+  </data>
+  <data name="Editor.Processing.Applying.Description" xml:space="preserve">
+    <value>Choisissez quelle routine vous voulez appliquer aux documents</value>
+  </data>
+  <data name="Editor.Create.Title.EditTexts" xml:space="preserve">
+    <value>Modifier Routine de Textes</value>
+  </data>
+  <data name="Editor.Create.Description.EditTexts" xml:space="preserve">
+    <value>Définissez les textes source et cible à remplacer dans les documents.</value>
+  </data>
+  <data name="Editor.Create.Title.EditParagraphs" xml:space="preserve">
+    <value>Modifier Routine de Paragraphes</value>
+  </data>
+  <data name="Editor.Create.Description.EditParagraphs" xml:space="preserve">
+    <value>Définissez des conditions pour sélectionner et modifier les paragraphes.</value>
+  </data>
+  <data name="Editor.Create.Title.EditColorGap" xml:space="preserve">
+    <value>Modifier Routine d'Écart de Couleur</value>
+  </data>
+  <data name="Editor.Create.Description.EditColorGap" xml:space="preserve">
+    <value>Définissez l'écart de couleurs qui affectera les textes dans la plage spécifiée.</value>
+  </data>
+  <data name="Editor.Create.Title.ReplaceImages" xml:space="preserve">
+    <value>Modifier Routine de Remplacement d'Images</value>
+  </data>
+  <data name="Editor.Create.Description.ReplaceImages" xml:space="preserve">
+    <value>Sélectionnez quelles images remplacer et l'image de remplacement.</value>
+  </data>
+  <data name="RoutineFactory.Default.Name" xml:space="preserve">
+    <value>Nouvelle routine</value>
+  </data>
+  <data name="Translator.Option.Auto" xml:space="preserve">
+    <value>Auto</value>
+  </data>
+  <data name="Translator.Option.EN" xml:space="preserve">
+    <value>Anglais</value>
+  </data>
+  <data name="Translator.Option.ES" xml:space="preserve">
+    <value>Espagnol</value>
+  </data>
+  <data name="Translator.Option.FR" xml:space="preserve">
+    <value>Français</value>
+  </data>
+  <data name="Translator.Option.PT" xml:space="preserve">
+    <value>Portugais</value>
+  </data>
+  <data name="Translator.Introduction.Title" xml:space="preserve">
+    <value>Système de Traduction</value>
+  </data>
+  <data name="Translator.Introduction.Description" xml:space="preserve">
+    <value>Dans ce système, il est possible de traduire des documents techniques à partir de glossaires, permettant une traduction de meilleure qualité.</value>
+  </data>
+  <data name="Translator.Processing.Choose.Name" xml:space="preserve">
+    <value>Langues</value>
+  </data>
+  <data name="Translator.Processing.Choose.Description" xml:space="preserve">
+    <value>Définissez les langues à traduire</value>
+  </data>
+  <data name="Translator.Processing.Applying.Description" xml:space="preserve">
+    <value>Traitez les documents en fonction des langues sélectionnées</value>
+  </data>
+  <data name="Translator.Processing.Applying.Button" xml:space="preserve">
+    <value>Traduire</value>
+  </data>
+  <data name="Translator.Processing.Description" xml:space="preserve">
+    <value>Sélectionnez quels documents seront traités et choisissez dans quelle langue ils seront traduits.</value>
+  </data>
+  <data name="Translator.Glossaries" xml:space="preserve">
+    <value>Glossaire</value>
+  </data>
+  <data name="TabProcess.Loading" xml:space="preserve">
+    <value>Chargement…</value>
+  </data>
+  <data name="Notifications.Clear" xml:space="preserve">
+    <value>Tout supprimer</value>
+  </data>
+  <data name="NavMenu.Generator" xml:space="preserve">
+    <value>Générateur</value>
+  </data>
+  <data name="GridOptionsFileList.Done.Title" xml:space="preserve">
+    <value>Traitement terminé</value>
+  </data>
+  <data name="GridOptionsFileList.Done.Description" xml:space="preserve">
+    <value>Tous les fichiers ont été traités, vous pouvez maintenant fermer et en traiter d’autres</value>
+  </data>
+  <data name="GridOptionsFileList.Loading" xml:space="preserve">
+    <value>Chargement...</value>
+  </data>
+  <data name="GridOptionsFileList.Close" xml:space="preserve">
+    <value>Fermer</value>
+  </data>
+  <data name="AppContextModel.Welcome" xml:space="preserve">
+    <value>Bienvenue</value>
+  </data>
+  <data name="AppContextModel.NotificationsPlaceholder" xml:space="preserve">
+    <value>Vos futures notifications s’afficheront ici</value>
+  </data>
+  <data name="AppContextModel.NoFiles" xml:space="preserve">
+    <value>Aucun fichier</value>
+  </data>
+  <data name="AppContextModel.SelectAtLeastOneFile" xml:space="preserve">
+    <value>Sélectionnez au moins un fichier.</value>
+  </data>
+  <data name="AppContextModel.Processed" xml:space="preserve">
+    <value>Traité</value>
+  </data>
+  <data name="AppContextModel.AllFilesProcessed" xml:space="preserve">
+    <value>Tous les fichiers ont été traités</value>
+  </data>
+  <data name="AppContextModel.Canceled" xml:space="preserve">
+    <value>Annulé</value>
+  </data>
+  <data name="AppContextModel.ProcessingCanceled" xml:space="preserve">
+    <value>Traitement annulé.</value>
+  </data>
+  <data name="Help.Sections.Translator.Overview.Paragraph2" xml:space="preserve">
+    <value>Le bouton de gauche indique la langue du fichier d’origine ; par défaut, il est réglé sur la détection automatique (Auto). Le bouton de droite indique la langue vers laquelle le fichier sera traduit. Si vous souhaitez appliquer des glossaires techniques, il suffit de laisser l’interrupteur à côté des boutons activé (vert foncé).</value>
+  </data>
+</root>

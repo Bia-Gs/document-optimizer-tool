@@ -1,0 +1,26 @@
+﻿<div class="nav-item rounded-pill h-100 opcao-nav text-center d-inline-flex align-items-center justify-content-center gap-2
+            @(Active ? "text-primary border border-primary bg-secondary" : "text-dark")"
+     @onclick="OnClick">
+
+    @Text
+    @ChildContent
+</div>
+
+@code {
+    [Parameter] public string Text { get; set; } = string.Empty;
+    [Parameter] public bool Active { get; set; }
+    [Parameter] public EventCallback OnClick { get; set; }
+    [Parameter] public RenderFragment? ChildContent { get; set; }
+}
+
+<style>
+    .opcao-nav {
+        cursor: pointer;
+        border: solid 1px transparent;
+        transition: border-color .5s ease;
+    }
+
+        .opcao-nav:hover {
+            border: solid 1px var(--bs-primary);
+        }
+</style>

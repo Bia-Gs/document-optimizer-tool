@@ -1,0 +1,66 @@
+﻿@inject I18n I18n
+@using DOT_User_Interface.Models.Tables
+@using DOT_User_Interface.Models.Tables.Util
+
+@* TableImportButton.razor *@
+<label for="@_id" class="btn btn-outline-primary @ButtonClass" title="@Title">
+    <i class="bi bi-plus-lg"></i>
+    @I18n["Create.External.Import.Button"]
+</label>
+
+<InputFile id="@_id"
+           class="d-none"
+           multiple="@Multiple"
+           accept="@Accepts"
+           OnChange="OnFilesSelected" />
+
+@code {
+    [CascadingParameter] public AppContextModel? AppContext { get; set; }
+
+    [Parameter] public TableFactory TableFactory { get; set; } = default!;
+    [Parameter] public EventCallback<ITable> OnImported { get; set; }
+    [Parameter] public EventCallback OnSelected { get; set; }
+    [Parameter] public string ButtonText { get; set; } = "Import";
+    [Parameter] public string ButtonClass { get; set; } = "";
+    [Parameter] public string Title { get; set; } = "Import from JSON";
+    [Parameter] public string IconClass { get; set; } = "bi bi-upload";
+    [Parameter] public string Accepts { get; set; } = ".json";
+    [Parameter] public bool Multiple { get; set; } = false;
+    [Parameter] public long MaxFileSizeBytes { get; set; } = 10 * 1024 * 1024; // 10MB
+
+    // Se quiser renomear/importar como tipo específico:
+    [Parameter] public string? NewName { get; set; }
+    [Parameter] public TableTypes? OverrideType { get; set; }
+
+    private readonly string _id = $"import_{Guid.NewGuid():N}";
+
+    private async Task OnFilesSelected(InputFileChangeEventArgs e)
+    {
+        try
+        {
+            if (TableFactory is null) return;
+
+            var files = Multiple ? e.GetMultipleFiles() : new[] { e.File };
+            foreach (var file in files)
+            {
+                if (!file.Name.EndsWith(".json", StringComparison.OrdinalIgnoreCase))
+                    continue;
+
+                var table = await TableFactory.ImportNewFromBrowserFileAsync(file, NewName, OverrideType, MaxFileSizeBytes);
+
+                // aciona callback para navegação/estado (ex.: ir para "processing")
+                if (OnImported.HasDelegate)
+                    await OnImported.InvokeAsync(table);
+
+                if (OnSelected.HasDelegate)
+                    await OnSelected.InvokeAsync();
+            }
+        }
+        catch (Exception ex)
+        {
+            System.Diagnostics.Debug.WriteLine($"Falha ao importar: {ex}");
+            // aqui você pode exibir um toast/mensagem de erro
+        }
+        StateHasChanged();
+    }
+}

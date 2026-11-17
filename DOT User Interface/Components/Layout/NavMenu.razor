@@ -1,0 +1,59 @@
+﻿@inject I18n I18n
+
+<div class="container-fluid p-1">
+    <nav class="navbar navbar-expand-md bg-body-tertiary bg-primary rounded-3">
+        <div class="container-fluid">
+            <NavLink class="navbar-brand" href="/" Match="NavLinkMatch.All">
+                <img src="/Images/ge_logo.png" alt="Logo" width="150" height="50" />
+            </NavLink>
+
+            <button style="border: solid 1px var(--bs-secondary)" class="text-secondary fw-bold navbar-toggler p-3" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                @I18n["NavMenu." + AppContext.Page.ToString()]
+            </button>
+
+            <div class="collapse navbar-collapse p-1" id="navbarNav">
+                <div class="navbar-nav gap-1 ms-auto">
+                    <NavLink class=@GetNavClass(MainPages.Marker) href="/marker" @onclick=AppContext.PageMarker Match="NavLinkMatch.All">
+                        @I18n["NavMenu.Marker"]
+                    </NavLink>
+                    <NavLink class=@GetNavClass(MainPages.Editor) href="/editor" @onclick=AppContext.PageEditor Match="NavLinkMatch.All">
+                        @I18n["NavMenu.Editor"]
+                    </NavLink>
+                    <NavLink class=@GetNavClass(MainPages.Translator) href="/translator" @onclick=AppContext.PageTranslator Match="NavLinkMatch.All">
+                        @I18n["NavMenu.Translator"]
+                    </NavLink>
+                    <NavLink class=@GetNavClass(MainPages.Help) href="/help" @onclick=AppContext.PageHelp Match="NavLinkMatch.All">
+                        @I18n["NavMenu.Help"]
+                    </NavLink>
+                    @* <NavLink class=@GetNavClass(MainPages.Generator) href="/generator" @onclick=AppContext.PageGenerator Match="NavLinkMatch.All">
+                        @I18n["NavMenu.Generator"]
+                    </NavLink> *@
+                    <NavLink class=@GetNavClass(MainPages.Home) href="/" @onclick=AppContext.PageHome Match="NavLinkMatch.All">
+                        DOT
+                    </NavLink>
+                </div>
+            </div>
+        </div>
+    </nav>
+</div>
+
+@code {
+    [CascadingParameter] public AppContextModel AppContext { get; set; }
+    private string GetNavClass(MainPages nomePagina) => $"nav-link align-content-center mx-3 {(AppContext.Page == nomePagina ? "text-secondary fw-bold fs-5" : "text-white")}";
+}
+
+<style>
+    /* Transições suaves para hover */
+    .nav-link {
+        transition: color .25s ease, transform .25s ease, text-decoration .25s ease, font-size .25s ease;
+    }
+
+        /* Efeito hover global */
+        .nav-link:hover {
+            color: var(--bs-secondary) !important;
+            transform: scale(1.05);
+            text-decoration: underline;
+            text-underline-offset: 4px; /* afasta o sublinhado do texto */
+        }
+</style>

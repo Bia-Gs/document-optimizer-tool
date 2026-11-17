@@ -1,0 +1,185 @@
+﻿@using DOT_User_Interface.Models.Forms
+@using System.Drawing
+@using System.Drawing.Imaging
+@inject I18n I18n
+
+
+<div class="card-body gap-2">
+    <div class="accordion" id="accordionExample">
+        <div class="accordion-item">
+            <h2 class="accordion-header">
+                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                    Table properties
+                </button>
+            </h2>
+            <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#accordionExample">
+                <div class="me-auto p-3">
+                    <h5 class="mb-0 fw-medium">Common properties</h5>
+                    <small class="text-primary fw-lighter">Properties that will be passed on to other inputs (this does not rewrite the properties defined in them)</small>
+                </div>
+                <FormText Model=Table />
+                <hr />
+                <div class="me-auto p-3">
+                    <h5 class="mb-0 fw-medium">Table properties</h5>
+                    <small class="text-primary fw-lighter">Unique table properties</small>
+                </div>
+                <div class="row p-3">
+                    <div class="col-md-2">
+                        <label class="form-label">Width</label>
+                        <input type="number" class="form-control" @bind="Table.Width" />
+                    </div>
+                    <div class="col-md-2">
+                        <label class="form-label">Rows height</label>
+                        <input type="number" class="form-control" @bind="Table.RowsHeight" />
+                    </div>
+                    <div class="col-md-3">
+                        <label class="form-label">Border</label>
+                        <select class="form-select" @bind="Table.Border">
+                            @foreach (var b in Enum.GetValues<Border>())
+                            {
+                                <option value="@b">@b</option>
+                            }
+                        </select>
+                    </div>
+                    <div class="col-md-3">
+                        <label class="form-label">Border Style</label>
+                        <select class="form-select" @bind="Table.BorderStyle">
+                            @foreach (var s in Enum.GetValues<BorderStyle>())
+                            {
+                                <option value="@s">@s</option>
+                            }
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+        @foreach (var row in Table.Rows)
+        {
+            var rIdx = Table.Rows.IndexOf(row);
+            <div class="accordion-item">
+                <h2 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#@("collapseTableRow" + rIdx)" aria-controls="@("collapseTableRow" + rIdx)">
+                        Row (@(rIdx + 1)): @row.Name
+                    </button>
+                </h2>
+                <div id="@("collapseTableRow" + rIdx)" class="accordion-collapse collapse" data-bs-parent="#@("collapseTableRow" + rIdx)">
+                    <div class="me-auto p-3">
+                        <h5 class="mb-0 fw-medium">Row properties</h5>
+                        <small class="text-primary fw-lighter">Unique table properties</small>
+                    </div>
+                    <div class="m-3 d-flex gap-2">
+                        <div>
+                            <label class="form-label small">NoProof</label><br />
+                            <input type="checkbox" @bind="row.NoProof" />
+                        </div>
+                        <div>
+                            <label class="form-label small">Height</label>
+                            <input type="number" class="form-control" style="width:120px" @bind="row.Height" />
+                        </div>
+                        <div class="ms-auto">
+                            <button class="btn btn-outline-danger" @onclick=@(() => Table.RemoveRow(row))><i class="bi bi-trash"></i> Remover linha</button>
+                        </div>
+                    </div>
+
+                    <div class="table-responsive d-block p-3">
+                        <table class="table table-sm table-striped shadow rounded-3">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Cells</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var cell in row.Cells)
+                                {
+                                    <tr>
+                                        <td>@row.Cells.IndexOf(cell)</td>
+                                        <td>
+                                            <div class="row mb-3 d-flex gap-2">
+                                                <div class="col-md-3 col-lg-2">
+                                                    <label class="form-label small text-primary">Width</label><br />
+                                                    <input type="number" class="form-control form-control-sm" @bind="cell.Width" />
+                                                </div>
+                                                <div class="col-md-3 col-lg-1">
+                                                    <label class="form-label small text-primary">Columns</label>
+                                                    <input type="number" class="form-control form-control-sm" @bind="cell.GridColumn" />
+                                                </div>
+                                                <div class="col-md-3 col-lg-2">
+                                                    <label class="form-label small text-primary">Merge</label>
+                                                    <select class="form-select form-select-sm" @bind="cell.Merge">
+                                                        @foreach (var m in Enum.GetValues<Merge>())
+                                                        {
+                                                            <option value="@m">@m</option>
+                                                        }
+                                                    </select>
+                                                </div>
+                                                <div class="col-md-5 col-lg-3">
+                                                    <label class="form-label small text-primary">Border</label>
+                                                    <select class="form-select form-select-sm" @bind="cell.Border">
+                                                        @foreach (var b in Enum.GetValues<Border>())
+                                                        {
+                                                            <option value="@b">@b</option>
+                                                        }
+                                                    </select>
+                                                </div>
+                                                <div class="col-md-5 col-lg-3">
+                                                    <label class="form-label small text-primary">Border Style</label>
+                                                    <select class="form-select form-select-sm" @bind="cell.BorderStyle">
+                                                        @foreach (var s in Enum.GetValues<BorderStyle>())
+                                                        {
+                                                            <option value="@s">@s</option>
+                                                        }
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="d-fluid">
+                                                <button class="ms-auto btn btn-sm btn-outline-primary">
+                                                    <i class="bi bi-pencil"></i>
+                                                    Edit elements
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                    <hr />
+                    <div class="me-auto p-3">
+                        <h5 class="mb-0 fw-medium">Common properties</h5>
+                        <small class="text-primary fw-lighter">Properties that will be passed on to other inputs (this does not rewrite the properties defined in them)</small>
+                    </div>
+                    <FormText Model=row />
+
+                    @*   Células -> textos detalhados modal-like simples abaixo
+                        @if (_editingCell != null && _editingCellOwner == row)
+                        {
+                            <div class="border rounded p-2 m-2">
+                                <h6>Cell text properties</h6>
+                                @foreach (var Text in _editingCell.Texts)
+                                {
+                                    <FormText Model=Text />
+                                }
+                                <div class="d-flex gap-2">
+                                    <button class="btn btn-sm btn-outline-primary" @onclick=@(() => AddText(_editingCell))>Adicionar texto</button>
+                                    <button class="btn btn-sm btn-secondary" @onclick=@CloseEditCell>Fechar</button>
+                                </div>
+                            </div>
+                            <hr />
+                        } *@
+                </div>
+            </div>
+        }
+        <button @onclick=Table.NewRow class="btn btn-secondary btn-outline-primary">
+            Add Row
+        </button>
+    </div>
+</div>
+
+@code {
+    [CascadingParameter] public AppContextModel AppContext { get; set; }
+    [Parameter] public Table Table { get; set; } = new();
+}

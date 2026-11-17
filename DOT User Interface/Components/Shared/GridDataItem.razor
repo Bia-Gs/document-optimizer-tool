@@ -1,0 +1,23 @@
+﻿<div class="card m-2">
+    <div class="row g-0">
+        <div class="col-md-4 d-flex align-items-center justify-content-center bg-light">
+            <i class="bi @(Image) text-primary display-1"></i>
+        </div>
+        <div class="col-md-8">
+            <div class="card-body">
+                <h5 class="card-title">@Title</h5>
+                <p class="card-text">@Text</p>
+                <p class="card-text"><small class="text-body-secondary">@LastUpdate</small></p>
+                @ChildContent
+            </div>
+        </div>
+    </div>
+</div>
+
+@code {
+    [Parameter] public string Image {get; set;} = "";
+    [Parameter] public string Title {get; set;} = "";
+    [Parameter] public string Text {get; set;} = "";
+    [Parameter] public string LastUpdate {get; set;} = "";
+    [Parameter] public RenderFragment? ChildContent { get; set; }
+}

@@ -1,0 +1,24 @@
+﻿@inject I18n I18n
+
+<nav class="navbar navbar-expand-md">
+    <div class="container-fluid">
+
+        <!-- Botão hamburguer -->
+        <button class="navbar-toggler btn mb-1 bg-primary bg-opacity-25 mx-3 px-3 p-1 rounded-pill ms-auto" type="button" data-bs-toggle="collapse" data-bs-target="#dotNav"
+                aria-controls="dotNav" aria-expanded="false" aria-label="Toggle navigation">
+            @(ButtonText == null ? I18n["Shared.NavTabs.Button"] : ButtonText)
+        </button>
+
+        <!-- Links -->
+        <div class="collapse navbar-collapse justify-content-center bg-primary bg-opacity-25 mx-1 p-2 rounded-4" id="dotNav">
+            <div class="navbar-nav nav-pills nav-fill gap-2 w-100">
+                @ChildContent
+            </div>
+        </div>
+    </div>
+</nav>
+
+@code {
+    [Parameter] public string? ButtonText { get; set; }
+    [Parameter] public RenderFragment? ChildContent { get; set; }
+}

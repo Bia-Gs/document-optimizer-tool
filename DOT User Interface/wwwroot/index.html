@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+    <title>DOT User Interface</title>
+    <base href="/" />
+    <link rel="stylesheet" href="css/bootstrap/bootstrap.min.css" />
+    <link rel="stylesheet" href="bootstrap-icons/bootstrap-icons-1.13.1/bootstrap-icons.css" />
+    <link rel="stylesheet" href="css/app.css" />
+    <link rel="stylesheet" href="DOT User Interface.styles.css" />
+    <link rel="icon" href="data:,">
+    <style>
+        :root {
+            --bs-primary: #005e60; /* substitua pela cor primária desejada */
+            --bs-secondary: #c8ff08; /* substitua pela cor secundária desejada */
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="status-bar-safe-area"></div>
+
+    <div id="app">Loading...</div>
+
+    <div id="blazor-error-ui">
+        An unhandled error has occurred.
+        <a href="" class="reload">Reload</a>
+        <a class="dismiss">🗙</a>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+            crossorigin="anonymous"></script>
+    <script src="_framework/blazor.webview.js" autostart="false"></script>
+    <script>
+        // Aplica família de fonte na seleção atual do documento (usa execCommand como fallback)
+        window.DOTTextEditor = {
+            setFontOnSelection: function (fontCss) {
+                try {
+                    // tenta usar document.getSelection e envolver em span
+                    const sel = document.getSelection();
+                    if (!sel || sel.rangeCount === 0) return;
+                    const range = sel.getRangeAt(0);
+                    if (range.collapsed) return; // nada selecionado
+
+                    const span = document.createElement('span');
+                    span.style.fontFamily = fontCss;
+                    range.surroundContents(span);
+                    // limpa seleção
+                    sel.removeAllRanges();
+                }
+                catch (e) {
+                    try {
+                        // fallback antigo
+                        document.execCommand('fontName', false, fontCss);
+                    }
+                    catch { /* ignore */ }
+                }
+            }
+        };
+    </script>
+    <script>
+        window.DOTSpy = (function () {
+            function init(containerSelector, navSelector) {
+                const container = document.querySelector(containerSelector);
+                const nav = document.querySelector(navSelector);
+                if (!container || !nav) return;
+
+                const sections = Array.from(container.querySelectorAll('[data-spy-section][id]'));
+                const buttons = Array.from(nav.querySelectorAll('[data-target-id]'));
+
+                // limpa active
+                const setActive = (id) => {
+                    buttons.forEach(b => b.classList.toggle('active', b.dataset.targetId === id));
+                };
+
+                const io = new IntersectionObserver((entries) => {
+                    // pega a seção mais visível
+                    const visible = entries
+                        .filter(e => e.isIntersecting)
+                        .sort((a, b) => b.intersectionRatio - a.intersectionRatio);
+
+                    if (visible.length > 0) {
+                        setActive(visible[0].target.id);
+                    }
+                }, {
+                    root: container,
+                    threshold: [0.25, 0.5, 0.75]
+                });
+
+                sections.forEach(el => io.observe(el));
+
+                // guarda para debugging/cleanup se precisar
+                container._dotSpy = { io, buttons, sections, setActive };
+            }
+
+            function scrollTo(id, containerSelector) {
+                const container = document.querySelector(containerSelector);
+                if (!container) return;
+                const el = container.querySelector(`#${CSS.escape(id)}`);
+                if (!el) return;
+                el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+
+            return { init, scrollTo };
+        })();
+
+    </script>
+</body>
+
+</html>

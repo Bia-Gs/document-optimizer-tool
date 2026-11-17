@@ -1,0 +1,546 @@
+﻿@page "/editor"
+@using DOT_User_Interface.Models.Routines
+@using DOT_User_Interface.Models.Routines.Util
+@inject I18n I18n
+@inject IJSRuntime JS
+
+<NavTabsMenu Options=Options />
+
+<div class="container-fluid mb-3">
+    @switch (AppContext.PageTab)
+    {
+        case PageTabs.Create:
+            @if (RoutineFactory.TargetRoutine == null)
+            {
+                <GridData Title=@I18n["Editor.Create.Title"]
+                          Description=@I18n["Editor.Create.Description"]>
+                    <GridDataItem Image="bi-fonts"
+                                  Title=@I18n["Editor.Create.EditTexts.Title"]
+                                  Text=@I18n["Editor.Create.EditTexts.Text"]>
+                        <div class="hstack gap-3 justify-content-center">
+                            <button class="btn btn-secondary btn-outline-primary" @onclick=@(() => RoutineFactory.Create(RoutineTypes.EditTexts)) aria-label=@I18n["Editor.Action.Create"]>
+                                <i class="bi bi-plus-lg" title=@I18n["Editor.Action.Create"] aria-hidden="true"></i>
+                                @I18n["Editor.Action.Create"]
+                            </button>
+                            @if (RoutineFactory.RoutinesEditTexts.Count > 0)
+                            {
+                                <div class="vr"></div>
+                                <div class="dropdown">
+                                    <button class="btn btn-outline-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label=@I18n["Editor.Action.Choose"]>
+                                        <i class="bi bi-pencil-square" title=@I18n["Editor.Action.Choose"] aria-hidden="true"></i>
+                                        @I18n["Editor.Action.Choose"]
+                                    </button>
+                                    <ul class="dropdown-menu">
+                                        @foreach (var routine in RoutineFactory.RoutinesEditTexts)
+                                        {
+                                            <li><a @onclick=@(() => RoutineFactory.Edit(routine)) class="dropdown-item">@routine.Name</a></li>
+                                        }
+                                    </ul>
+                                </div>
+                            }
+                        </div>
+                    </GridDataItem>
+                    <GridDataItem Image="bi-text-paragraph"
+                                  Title=@I18n["Editor.Create.EditParagraphs.Title"]
+                                  Text=@I18n["Editor.Create.EditParagraphs.Text"]>
+                        <div class="hstack gap-3 justify-content-center">
+                            <button class="btn btn-secondary btn-outline-primary" @onclick=@(() => RoutineFactory.Create(RoutineTypes.EditParagraphs)) aria-label=@I18n["Editor.Action.Create"]>
+                                <i class="bi bi-plus-lg" title=@I18n["Editor.Action.Create"] aria-hidden="true"></i>
+                                @I18n["Editor.Action.Create"]
+                            </button>
+                            @if (RoutineFactory.RoutinesEditParagraphs.Count > 0)
+                            {
+                                <div class="vr"></div>
+                                <div class="dropdown">
+                                    <button class="btn btn-outline-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label=@I18n["Editor.Action.Choose"]>
+                                        <i class="bi bi-pencil-square" title=@I18n["Editor.Action.Choose"] aria-hidden="true"></i>
+                                        @I18n["Editor.Action.Choose"]
+                                    </button>
+                                    <ul class="dropdown-menu">
+                                        @foreach (var routine in RoutineFactory.RoutinesEditParagraphs)
+                                        {
+                                            <li><a @onclick=@(() => RoutineFactory.Edit(routine)) class="dropdown-item">@routine.Name</a></li>
+                                        }
+                                    </ul>
+                                </div>
+                            }
+                        </div>
+                    </GridDataItem>
+                    <GridDataItem Image="bi-palette"
+                                  Title=@I18n["Editor.Create.EditColorGap.Title"]
+                                  Text=@I18n["Editor.Create.EditColorGap.Text"]>
+                        <div class="hstack gap-3 justify-content-center">
+                            <button class="btn btn-secondary btn-outline-primary" @onclick=@(() => RoutineFactory.Create(RoutineTypes.EditColorGap)) aria-label=@I18n["Editor.Action.Create"]>
+                                <i class="bi bi-plus-lg" title=@I18n["Editor.Action.Create"] aria-hidden="true"></i>
+                                @I18n["Editor.Action.Create"]
+                            </button>
+                            @if (RoutineFactory.RoutinesColorGaps.Count > 0)
+                            {
+                                <div class="vr"></div>
+                                <div class="dropdown">
+                                    <button class="btn btn-outline-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label=@I18n["Editor.Action.Choose"]>
+                                        <i class="bi bi-pencil-square" title=@I18n["Editor.Action.Choose"] aria-hidden="true"></i>
+                                        @I18n["Editor.Action.Choose"]
+                                    </button>
+                                    <ul class="dropdown-menu">
+                                        @foreach (var routine in RoutineFactory.RoutinesColorGaps)
+                                        {
+                                            <li><a @onclick=@(() => RoutineFactory.Edit(routine)) class="dropdown-item">@routine.Name</a></li>
+                                        }
+                                    </ul>
+                                </div>
+                            }
+                        </div>
+                    </GridDataItem>
+                    <GridDataItem Image="bi-images"
+                                  Title=@I18n["Editor.Create.ReplaceImages.Title"]
+                                  Text=@I18n["Editor.Create.ReplaceImages.Text"]>
+                        <div class="hstack gap-3 justify-content-center">
+                            <button class="btn btn-secondary btn-outline-primary" @onclick=@(() => RoutineFactory.Create(RoutineTypes.ReplaceImages)) aria-label=@I18n["Editor.Action.Create"]>
+                                <i class="bi bi-plus-lg" title=@I18n["Editor.Action.Create"] aria-hidden="true"></i>
+                                @I18n["Editor.Action.Create"]
+                            </button>
+                            @if (RoutineFactory.RoutinesReplaceImages.Count > 0)
+                            {
+                                <div class="vr"></div>
+                                <div class="dropdown">
+                                    <button class="btn btn-outline-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label=@I18n["Editor.Action.Choose"]>
+                                        <i class="bi bi-pencil-square" title=@I18n["Editor.Action.Choose"] aria-hidden="true"></i>
+                                        @I18n["Editor.Action.Choose"]
+                                    </button>
+                                    <ul class="dropdown-menu">
+                                        @foreach (var routine in RoutineFactory.RoutinesReplaceImages)
+                                        {
+                                            <li><a @onclick=@(() => RoutineFactory.Edit(routine)) class="dropdown-item">@routine.Name</a></li>
+                                        }
+                                    </ul>
+                                </div>
+                            }
+                        </div>
+                    </GridDataItem>
+                    <GridDataItem Image="bi-download"
+                                  Title=@I18n["Editor.Create.External.Title"]
+                                  Text=@I18n["Editor.Create.External.Text"]>
+                        <div class="hstack gap-3 justify-content-center">
+                            <FilePickerRoutineJson RoutineFactory="@RoutineFactory"
+                                                   ButtonClass=""
+                                                   ButtonText=@I18n["Editor.Action.Import"]
+                                                   OnSelected=@(AppContext.PageTabCreate)
+                                                   Accepts=".json" />
+                            @if (RoutineFactory.Routines.Count() > 0)
+                            {
+                                <div class="vr"></div>
+                                <div class="dropdown">
+                                    <button class="btn btn-outline-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label=@I18n["Editor.Action.Export"]>
+                                        <i class="bi bi-share" title=@I18n["Editor.Action.Export"] aria-hidden="true"></i>
+                                        @I18n["Editor.Action.Export"]
+                                    </button>
+                                    <ul class="dropdown-menu">
+                                        @foreach (var table in RoutineFactory.Routines)
+                                        {
+                                            <li @onclick=@(() => table.ShareAsync(I18n))>
+                                                <a class="dropdown-item">
+                                                    <i class="@RoutineImage(table.Type)"></i>
+                                                    @table.Name
+                                                </a>
+                                            </li>
+                                        }
+                                    </ul>
+                                </div>
+                            }
+                        </div>
+                    </GridDataItem>
+                </GridData>
+            }
+            else
+            {
+                <Introduction Title=@I18n["Editor.Create.Title." + RoutineFactory.EditRoutine.Type.ToString()]
+                              Description=@I18n["Editor.Create.Description." + RoutineFactory.EditRoutine.Type.ToString()]>
+                    <div class="container-fluid d-grid gap-2">
+                        <div class="container-fluid d-grid gap-2 my-2">
+                            <div class="row">
+                                <div class="input-group border border-primary rounded-3 has-validation">
+                                    <span class="input-group-text bg-transparent border-0">
+                                        @I18n["Editor.Create.Name.Field"]
+                                    </span>
+                                    <input @bind=RoutineFactory.EditRoutine.Name
+                                           type="text"
+                                           class="form-control @(RoutineFactory.EditRoutine.Name == "" ? "is-invalid" : "bg-transparent") bg-opacity-25 border-0 text-primary fw-bold"
+                                           aria-label=@I18n["Editor.Create.Name.Field"]>
+                                    <div class="invalid-feedback">
+                                        @I18n["Editor.Create.Name.Validation"]
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="input-group input-group-sm border border-primary rounded-3">
+                                    <span class="input-group-text bg-transparent border-0">
+                                        @I18n["Editor.Create.Description.Field"]
+                                    </span>
+                                    <textarea @bind=RoutineFactory.EditRoutine.Description
+                                              class="form-control bg-transparent border-0 text-primary"
+                                              aria-label=@I18n["Editor.Create.Description.Field"]
+                                              placeholder=@I18n["Editor.Placeholder.Comment"]></textarea>
+                                </div>
+                            </div>
+                            <div class="row gap-2">
+                                <button disabled="@(RoutineFactory.EditRoutine.Name == "")"
+                                        @onclick=@(() => RoutineFactory.Add(RoutineFactory.EditRoutine))
+                                        type="button"
+                                        class="col btn btn-secondary btn-outline-primary"
+                                        aria-label=@I18n["Editor.Action.Save"]>
+                                    <i class="bi bi-floppy" title=@I18n["Editor.Action.Save"] aria-hidden="true"></i>
+                                    @I18n["Editor.Action.Save"]
+                                </button>
+                                <button @onclick=RoutineFactory.Cancel
+                                        type="button"
+                                        class="col btn btn-outline-danger"
+                                        aria-label=@I18n["Editor.Action.Cancel"]>
+                                    <i class="bi bi-x-lg" title=@I18n["Editor.Action.Cancel"] aria-hidden="true"></i>
+                                    @I18n["Editor.Action.Cancel"]
+                                </button>
+                                @if (RoutineFactory.OriginalRoutine != null)
+                                {
+                                    <button @onclick=@(() => RoutineFactory.Remove(RoutineFactory?.OriginalRoutine))
+                                            type="button"
+                                            class="col btn btn-outline-danger"
+                                            aria-label=@I18n["Editor.Action.Delete"]>
+                                        <i class="bi bi-trash3" title=@I18n["Editor.Action.Delete"] aria-hidden="true"></i>
+                                        @I18n["Editor.Action.Delete"]
+                                    </button>
+                                }
+                            </div>
+                            <div class="row">
+                                @switch (RoutineFactory.EditRoutine)
+                                {
+                                    case RoutineEditTexts editTexts:
+                                        <GridOptions Title=@I18n["Editor.Target.Texts.Title"] Collapsed=false>
+                                            <GridOptionsItem Name=@I18n["Editor.Target.Texts.SourceName"]
+                                                             Description=@I18n["Editor.Target.Texts.SourceDescription"]>
+                                                <div class="form-floating w-100">
+                                                    <textarea @bind=@editTexts.SourceText class="form-control" placeholder=@I18n["Editor.Placeholder.Comment"] id="floatingTextarea"></textarea>
+                                                    <label for="floatingTextarea">@I18n["Editor.Create.OldLabel"]</label>
+                                                </div>
+                                            </GridOptionsItem>
+                                            <GridOptionsItem Name=@I18n["Editor.Target.Texts.TargetName"]
+                                                             Description=@I18n["Editor.Target.Texts.TargetDescription"]>
+                                                <div class="form-floating w-100">
+                                                    <textarea @bind=@editTexts.TargetText class="form-control" placeholder=@I18n["Editor.Placeholder.Comment"] id="floatingTextarea"></textarea>
+                                                    <label for="floatingTextarea">@I18n["Editor.Create.NewLabel"]</label>
+                                                </div>
+                                            </GridOptionsItem>
+                                        </GridOptions>
+                                        break;
+                                    case RoutineEditParagraphs editParagraphs:
+                                        <GridOptions Title=@I18n["Editor.Target.Texts.Title"] Collapsed=false>
+                                            <GridOptionsItem Name=@I18n["Editor.Options.IgnoreNumbers.Name"]
+                                                             Description=@I18n["Editor.Options.IgnoreNumbers.Description"]>
+                                                <input @bind=editParagraphs.IgnoreNumbers class="form-check-input" type="checkbox" role="switch" id="switchCheckDefault">
+                                            </GridOptionsItem>
+                                            <GridOptionsItem Name=@I18n["Editor.Options.DuplicateInParagraph.Name"]
+                                                             Description=@I18n["Editor.Options.DuplicateInParagraph.Description"]>
+                                                <input @bind=editParagraphs.DuplicateInParagraph class="form-check-input" type="checkbox" role="switch" id="switchCheckDefault">
+                                            </GridOptionsItem>
+                                        </GridOptions>
+                                        break;
+                                    case RoutineColorGap colorGap:
+                                        <GridOptions Title=@I18n["Editor.GapColor.Title"] Collapsed=false>
+                                            <GridOptionsItem Name=@I18n["Editor.GapColor.Name"]
+                                                             Description=@I18n["Editor.GapColor.Description"]>
+                                                <div class="input-group mb-3">
+                                                    <span class="input-group-text">@I18n["Editor.GapColor.Start"]</span>
+                                                    <input @bind=colorGap.StartColorGap type="color" class="form-control form-control-color" id="exampleColorInputStart" title=@I18n["Editor.GapColor.Start"]>
+                                                    <span class="input-group-text">@I18n["Editor.GapColor.End"]</span>
+                                                    <input @bind=colorGap.EndColorGap type="color" class="form-control form-control-color" id="exampleColorInputEnd" title=@I18n["Editor.GapColor.End"]>
+                                                </div>
+                                            </GridOptionsItem>
+                                        </GridOptions>
+                                        break;
+                                    case RoutineReplaceImages replaceImages:
+                                        <GridOptions Title=@I18n["Editor.ReplaceImages.Title"] Collapsed=false>
+                                            <GridOptionsItem Name=@I18n["Editor.ReplaceImages.SourceName"]
+                                                             Description=@I18n["Editor.ReplaceImages.SourceDescription"]>
+                                                <InputFile id="@_srcInputId"
+                                                           class="form-control"
+                                                           multiple="@false"
+                                                           accept=".jpeg,.gif,.png,.bmp,.tiff,.svg,.webp,.jpg"
+                                                           OnChange="OnSourceImagesSelected" />
+                                            </GridOptionsItem>
+                                            <GridOptionsItem Name=@I18n["Editor.ReplaceImages.TargetName"]
+                                                             Description=@I18n["Editor.ReplaceImages.TargetDescription"]>
+                                                <InputFile id="@_tgtInputId"
+                                                           class="form-control"
+                                                           multiple="@true"
+                                                           accept=".jpeg,.gif,.png,.bmp,.tiff,.svg,.webp,.jpg"
+                                                           OnChange="OnTargetImageSelected" />
+                                            </GridOptionsItem>
+                                            <div class="mt-2">
+                                                @if (replaceImages.SourceImages?.Count > 0)
+                                                {
+                                                    <div class="mb-2">
+                                                        <strong>@I18n["Editor.ReplaceImages.SourceName"]:</strong>
+                                                        <div class="d-flex gap-2 flex-wrap">
+                                                            @foreach (var s in replaceImages.SourceImages)
+                                                            {
+                                                                <div class="badge bg-light text-dark border">
+                                                                    @s
+                                                                    <button class="btn-close btn-close-white ms-2" @onclick=@(() => { replaceImages.RemoveSourceImage(s); RoutineFactory.Save(); StateHasChanged(); }) aria-label="Remove"></button>
+                                                                </div>
+                                                            }
+                                                        </div>
+                                                    </div>
+                                                }
+                                                @if (!string.IsNullOrWhiteSpace(replaceImages.TargetImage))
+                                                {
+                                                    <div>
+                                                        <strong>@I18n["Editor.ReplaceImages.TargetName"]:</strong>
+                                                        <div class="badge bg-light text-dark border">
+                                                            @replaceImages.TargetImage
+                                                            <button class="btn-close btn-close-white ms-2" @onclick=@(() => { replaceImages.ClearTargetImage(); RoutineFactory.Save(); StateHasChanged(); }) aria-label="Remove target"></button>
+                                                        </div>
+                                                    </div>
+                                                }
+                                            </div>
+                                        </GridOptions>
+                                        break;
+                                }
+                                @if (RoutineFactory.EditRoutine is TextStyleProperties textStyle)
+                                {
+                                    <GridOptions Title=@I18n["Editor.TextStyle.Title"] Collapsed=false>
+                                        <GridOptionsItem Name=@I18n["Editor.TextStyle.FontSize.Name"]
+                                                         Description=@I18n["Editor.TextStyle.FontSize.Description"]>
+                                            <InputNumber @bind-Value="textStyle.FontSize"
+                                                         class="form-control"
+                                                         style="width: 80px;" />
+                                        </GridOptionsItem>
+                                        <GridOptionsItem Name=@I18n["Editor.TextStyle.Bold.Name"]
+                                                         Description=@I18n["Editor.TextStyle.Bold.Description"]>
+                                            <select @bind="textStyle.Bold" class="form-select w-25" aria-label=@I18n["Editor.TextStyle.Bold.Name"]>
+                                                <option value="@OptionType.Auto">@I18n["Editor.Option.Auto"]</option>
+                                                <option value="@OptionType.On">@I18n["Editor.Option.On"]</option>
+                                                <option value="@OptionType.Off">@I18n["Editor.Option.Off"]</option>
+                                            </select>
+                                        </GridOptionsItem>
+                                        <GridOptionsItem Name=@I18n["Editor.TextStyle.Italic.Name"]
+                                                         Description=@I18n["Editor.TextStyle.Italic.Description"]>
+                                            <select @bind="textStyle.Italic" class="form-select w-25" aria-label=@I18n["Editor.TextStyle.Italic.Name"]>
+                                                <option value="@OptionType.Auto">@I18n["Editor.Option.Auto"]</option>
+                                                <option value="@OptionType.On">@I18n["Editor.Option.On"]</option>
+                                                <option value="@OptionType.Off">@I18n["Editor.Option.Off"]</option>
+                                            </select>
+                                        </GridOptionsItem>
+                                        <GridOptionsItem Name=@I18n["Editor.TextStyle.Color.Name"]
+                                                         Description=@I18n["Editor.TextStyle.Color.Description"]>
+                                            <div class="form-check form-check-reverse mx-2">
+                                                <input @bind=textStyle.IsColorEnable class="form-check-input" type="checkbox" value="" id="checkNativeSwitch" switch>
+                                                <label class="form-check-label" for="checkNativeSwitch">
+                                                    @I18n["Editor.TextStyle.Color.Enable"]
+                                                </label>
+                                            </div>
+                                            @if (textStyle.IsColorEnable)
+                                            {
+                                                <input @bind=textStyle.Color type="color" class="form-control form-control-color" id="exampleColorInputTextStyle" title=@I18n["Editor.TextStyle.Color.Name"]>
+                                            }
+                                        </GridOptionsItem>
+                                        <GridOptionsItem Name="Alterar Fonte"
+                                                         Description="Escolha a fonte que será aplicada aos textos.">
+                                            <div class="d-flex gap-2 align-items-center">
+                                                <select value="@textStyle.FontFamily" class="form-select w-25" aria-label="Alterar Fonte" @onchange="@(e => OnFontChanged(e, textStyle))">
+                                                    @foreach (var f in FontOptions)
+                                                    {
+                                                        <option value="@f.Css" style="font-family:@f.Css">@f.Name</option>
+                                                    }
+                                                </select>
+                                                <span class="border rounded px-3 py-1 ms-1" style="min-width:160px; display:inline-block; font-family:@(string.IsNullOrWhiteSpace(textStyle.FontFamily) ? FontOptions[0].Css : textStyle.FontFamily);">
+                                                    Pré-visualização
+                                                </span>
+                                            </div>
+                                        </GridOptionsItem>
+                                    </GridOptions>
+                                }
+                                @if (RoutineFactory.EditRoutine is RoutineSettings routineSettings)
+                                {
+
+                                    <GridOptions Title=@I18n["Editor.Settings.Title"] Collapsed=false>
+                                        <GridOptionsItem Name=@I18n["Editor.Settings.ApplyOnElements.Name"]
+                                                         Description=@I18n["Editor.Settings.ApplyOnElements.Description"]>
+                                            <input @bind=routineSettings.ApplyOnElements class="form-check-input" type="checkbox" role="switch" id="switchCheckDefault">
+                                        </GridOptionsItem>
+                                        <GridOptionsItem Name=@I18n["Editor.Settings.ApplyOnHeaders.Name"]
+                                                         Description=@I18n["Editor.Settings.ApplyOnHeaders.Description"]>
+                                            <input @bind=routineSettings.ApplyOnHeaders class="form-check-input" type="checkbox" role="switch" id="switchCheckDefault">
+                                        </GridOptionsItem>
+                                        <GridOptionsItem Name=@I18n["Editor.Settings.ApplyOnFooters.Name"]
+                                                         Description=@I18n["Editor.Settings.ApplyOnFooters.Description"]>
+                                            <input @bind=routineSettings.ApplyOnFooters class="form-check-input" type="checkbox" role="switch" id="switchCheckDefault">
+                                        </GridOptionsItem>
+                                    </GridOptions>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </Introduction>
+            }
+            break;
+
+        case PageTabs.Processing:
+            <TabProcess Description=@I18n["Editor.Processing.Description"]>
+                <button type="button" class="btn btn-outline-primary ms-auto" @onclick=AppContext.PageTabCreate>
+                    <i class="bi bi-plus-lg"></i>
+                    @I18n["Processing.Creation.Button"]
+                </button>
+                <div class="vr mx-1"></div>
+                <div class="dropdown">
+                    <button disabled="@(RoutineFactory.Routines.Count() == 0 || !AppContext.HasFiles)" class="btn btn-outline-primary btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        @I18n["Processing.Applying.Choose"]
+                    </button>
+                    <ul class="dropdown-menu">
+                        @foreach (var routine in RoutineFactory.Routines)
+                        {
+                            <li @onclick=@(() => AppContext.ProcessFilesAsync(routine.Endpoint, routine.ProcessingArgs()))>
+                                <a class="dropdown-item">
+                                    <i class="@RoutineImage(routine.Type)"></i>
+                                    @routine.Name
+                                </a>
+                            </li>
+                        }
+                    </ul>
+                </div>
+            </TabProcess>
+            break;
+
+        case PageTabs.Notifications:
+            <Notifications />
+            break;
+
+        case PageTabs.Settings:
+            <Settings />
+            break;
+
+        default:
+            <Introduction Title=@I18n["Editor.Introduction.Title"]
+                          Description=@I18n["Editor.Introduction.Description"]>
+                <FilePickerButton ButtonClass="px-4 my-5 rounded-4 fs-5"
+                                  ButtonText=@I18n["Introduction.Button"] />
+            </Introduction>
+            break;
+    }
+</div>
+
+@code {
+    [CascadingParameter] public AppContextModel AppContext { get; set; }
+    private List<PageTabs> Options { get; } = new() { PageTabs.Create, PageTabs.Processing, PageTabs.Notifications, PageTabs.Settings };
+    private RoutineFactory RoutineFactory;
+
+    // IDs únicos para os InputFile — evita conflito quando clicar várias vezes
+    private readonly string _srcInputId = $"import_src_{Guid.NewGuid():N}";
+    private readonly string _tgtInputId = $"import_tgt_{Guid.NewGuid():N}";
+
+    // opções de fontes exibidas no seletor
+    private record FontOption(string Name, string Css);
+
+    private List<FontOption> FontOptions { get; } = new()
+    {
+        new FontOption("Arial", "Arial, Helvetica, sans-serif"),
+        new FontOption("Georgia", "Georgia, serif"),
+        new FontOption("Times New Roman", "'Times New Roman', Times, serif"),
+        new FontOption("Courier New", "'Courier New', Courier, monospace"),
+        new FontOption("Calibri", "Calibri, Candara, Segoe, 'Segoe UI', Optima, Arial, sans-serif"),
+        new FontOption("Verdana", "Verdana, Geneva, sans-serif"),
+        new FontOption("Trebuchet MS", "'Trebuchet MS', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif")
+    };
+
+    private async Task ApplyFontToSelection(string fontCss)
+    {
+        try
+        {
+            if (string.IsNullOrWhiteSpace(fontCss)) return;
+            await JS.InvokeVoidAsync("DOTTextEditor.setFontOnSelection", fontCss);
+        }
+        catch (Exception ex)
+        {
+            System.Diagnostics.Debug.WriteLine($"Erro ao aplicar fonte: {ex}");
+        }
+    }
+
+    private async Task OnFontChanged(ChangeEventArgs e, TextStyleProperties textStyle)
+    {
+        try
+        {
+            var value = e?.Value?.ToString() ?? string.Empty;
+            textStyle.FontFamily = value;
+            RoutineFactory?.Save();
+            await ApplyFontToSelection(value);
+            await InvokeAsync(StateHasChanged);
+        }
+        catch (Exception ex)
+        {
+            System.Diagnostics.Debug.WriteLine($"OnFontChanged erro: {ex}");
+        }
+    }
+
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+        RoutineFactory = new(I18n);
+    }
+
+    private string RoutineImage(RoutineTypes type)
+    {
+        return type switch
+        {
+            RoutineTypes.EditTexts => "bi-fonts",
+            RoutineTypes.EditParagraphs => "bi-text-paragraph",
+            RoutineTypes.EditColorGap => "bi-palette",
+            RoutineTypes.ReplaceImages => "bi-images",
+            _ => ""
+        };
+    }
+
+    // Handlers para InputFile sem adicionar "using Microsoft.AspNetCore.Components.Forms;"
+    private async Task OnSourceImagesSelected(Microsoft.AspNetCore.Components.Forms.InputFileChangeEventArgs e)
+    {
+        try
+        {
+            if (RoutineFactory?.EditRoutine is RoutineReplaceImages r)
+            {
+                // sempre use GetMultipleFiles() — é seguro mesmo quando multiple=false
+                var files = e.GetMultipleFiles();
+                foreach (var file in files)
+                {
+                    // adiciona cada imagem (método assíncrono implementado no modelo)
+                    await r.AddSourceImageAsync(file);
+                }
+                RoutineFactory.Save();
+            }
+        }
+        catch (Exception ex)
+        {
+            System.Diagnostics.Debug.WriteLine($"Falha ao salvar imagens de origem: {ex}");
+        }
+        await InvokeAsync(StateHasChanged);
+    }
+
+    private async Task OnTargetImageSelected(Microsoft.AspNetCore.Components.Forms.InputFileChangeEventArgs e)
+    {
+        try
+        {
+            if (RoutineFactory?.EditRoutine is RoutineReplaceImages r)
+            {
+                // aceitar múltiplos, usar o primeiro como target (ou ajustar conforme UX desejada)
+                var files = e.GetMultipleFiles();
+                var first = files.FirstOrDefault();
+                if (first != null)
+                {
+                    await r.SetTargetImageAsync(first);
+                    RoutineFactory.Save();
+                }
+            }
+        }
+        catch (Exception ex)
+        {
+            System.Diagnostics.Debug.WriteLine($"Falha ao salvar imagem alvo: {ex}");
+        }
+        await InvokeAsync(StateHasChanged);
+    }
+}

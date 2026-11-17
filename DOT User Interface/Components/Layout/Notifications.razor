@@ -1,0 +1,77 @@
+﻿@inject I18n I18n
+
+<div class="container my-2 fade-in">
+    @if (ActiveNotifications?.Any() == true)
+    {
+        <div class="container d-flex p-2">
+            <button @onclick=@(()=> AppContext.RemoveAllNotification()) class="btn btn-sm btn-outline-danger ms-auto">
+                <i class="bi bi-trash"></i>
+                @I18n["Notifications.Clear"]
+            </button>
+        </div>
+        @foreach (var note in ActiveNotifications.OrderByDescending(n => n.DateCreated))
+        {
+            <div class="alert @GetAlertClass(note) notification-item alert-dismissible fade show d-flex align-items-center justify-content-between rounded-3 shadow-sm p-3 mb-2" role="alert">
+                <div class="d-flex align-items-center gap-3">
+                    <i class="@GetIconClass(note) fs-4"></i>
+                    <div>
+                        <strong>@note.Title</strong><br />
+                        <small class="text-primary">@note.DateCreated.ToString("g")</small><br />
+                        @note.Message
+                    </div>
+                </div>
+                <button type="button" class="btn-close" aria-label="Close" @onclick="() => AppContext.RemoveNotification(note)"></button>
+             </div>
+        }
+    }
+    else
+    {
+        <div class="alert alert-secondary text-center rounded-3 shadow-sm p-3 fade-in">
+            <i class="bi bi-bell-slash fs-5 me-2"></i>
+            @I18n["Notifications.Empty"]
+        </div>
+    }
+</div>
+
+@code {
+    [CascadingParameter] public AppContextModel AppContext { get; set; }
+    [Parameter] public List<Notification>? NotificationList { get; set; }
+
+    private List<Notification> ActiveNotifications => NotificationList ?? AppContext?.Notifications ?? new List<Notification>();
+    private string GetAlertClass(Notification note) => note.IsRead ? "alert-light" : "alert-primary";
+    private string GetIconClass(Notification note)
+    {
+        if (!note.IsRead)
+        {
+            AppContext?.MarkNotificationAsRead(note);
+            return "bi bi-bell-fill text-primary";
+        }
+        return "bi bi-bell text-primary";
+    }
+}
+
+<style>
+    .notification-item {
+        transition: opacity 0.3s ease, background-color 0.6s ease;
+        opacity: 1;
+    }
+
+    .notification-item.fade-in {
+        opacity: 1;
+    }
+
+    .notification-item.fade-out {
+        opacity: 0;
+        transform: scale(0.98);
+    }
+
+    .alert-primary {
+        background-color: #cfe2ff;
+        transition: background-color 0.6s ease;
+    }
+
+    .alert-light {
+        background-color: #f8f9fa;
+        transition: background-color 0.6s ease;
+    }
+</style>

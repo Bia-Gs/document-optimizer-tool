@@ -1,0 +1,19 @@
+﻿<div class="row">
+    <div class="col text-center">
+        <p class="p-0 m-0 fw-bold">
+            @Name
+        </p>
+        <p class="p-0 m-0 fs-6 opacity-75">
+            @Description
+        </p>
+    </div>
+    <div class="col d-flex align-items-center justify-content-center">
+        @ChildContent
+    </div>
+</div>
+
+@code {
+    [Parameter] public string Name { get; set; } = "";
+    [Parameter] public string Description { get; set; } = "";
+    [Parameter] public RenderFragment? ChildContent { get; set; }
+}

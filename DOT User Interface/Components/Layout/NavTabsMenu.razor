@@ -1,0 +1,59 @@
+﻿@inject I18n I18n
+
+<NavTabs>
+    <NavTabItem Text=@I18n["NavTabs.Home"] 
+                Active="@(AppContext.PageTab == PageTabs.Home)" 
+                OnClick="AppContext.PageTabHome" />
+    @if (Options.Contains(PageTabs.Journal))
+    {
+        <NavTabItem Text=@I18n["NavTabs.Journal"] 
+                    Active="@(AppContext.PageTab == PageTabs.Journal)" 
+                    OnClick="AppContext.PageTabOptions" />
+    }
+    @if (Options.Contains(PageTabs.Create))
+    {
+        <NavTabItem Text="@I18n["NavTabs.Create"]" 
+                    Active="@(AppContext.PageTab == PageTabs.Create)"
+                    OnClick="AppContext.PageTabCreate" />
+
+    }
+    @if (Options.Contains(PageTabs.Documentation))
+    {
+        <NavTabItem Text="@I18n["NavTabs.Documentation"]" 
+                    Active="@(AppContext.PageTab == PageTabs.Documentation)"
+                    OnClick="AppContext.PageTabDocumentation" />
+
+    }
+    @if (Options.Contains(PageTabs.Processing))
+    {
+        <NavTabItem Text=@I18n["NavTabs.Processing"]
+                    Active="@(AppContext.PageTab == PageTabs.Processing)" 
+                    OnClick="AppContext.PageTabProcessing" />
+    }
+    @if (Options.Contains(PageTabs.Notifications))
+    {
+        <NavTabItem Text=@I18n["NavTabs.Notifications"]
+                    Active="@(AppContext.PageTab == PageTabs.Notifications)" 
+                    OnClick="AppContext.PageTabNotifications">
+            @if (AppContext.NotificationsUnreaded > 0)
+            {
+                <span class="badge rounded-pill bg-danger fade-in">
+                    @(AppContext.NotificationsUnreaded > 99 ? "99+" : AppContext.NotificationsUnreaded)
+                </span>
+
+            }
+        </NavTabItem>
+    }
+    @if (Options.Contains(PageTabs.Settings))
+    {
+        <NavTabItem Text=@I18n["NavTabs.Settings"]
+                    Active="@(AppContext.PageTab == PageTabs.Settings)" 
+                    OnClick="AppContext.PageTabSetting" />
+    }
+</NavTabs>
+
+@code {
+    [CascadingParameter] public AppContextModel AppContext { get; set; }
+    [Parameter] public List<PageTabs> Options { get; set; } = new();
+    protected override void OnInitialized() => AppContext.SetupPageTabs(Options);
+}

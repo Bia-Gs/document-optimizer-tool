@@ -1,0 +1,122 @@
+﻿@using Microsoft.Maui.Storage
+@using Microsoft.Maui.Controls
+@inject I18n I18n
+
+<div class="fade-in">
+    <GridOptions Title=@I18n["Settings.Interface.Title"] Collapsed=false>
+        <GridOptionsItem Name=@I18n["Settings.Language.Title"]
+                         Description=@I18n["Settings.Language.Description"]>
+            <div class="dropdown">
+                <button class="btn btn-outline-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    @I18n["Settings.Languages." + Language]
+                </button>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item @(Language == "en" ? "active" : "")" @onclick="@(() => SetLanguageAsync("en"))">@I18n["Settings.Languages.en"]</a></li>
+                    <li><a class="dropdown-item @(Language == "pt" ? "active" : "")" @onclick="@(() => SetLanguageAsync("pt"))">@I18n["Settings.Languages.pt"]</a></li>
+                    <li><a class="dropdown-item @(Language == "es" ? "active" : "")" @onclick="@(() => SetLanguageAsync("es"))">@I18n["Settings.Languages.es"]</a></li>
+                    <li><a class="dropdown-item @(Language == "fr" ? "active" : "")" @onclick="@(() => SetLanguageAsync("fr"))">@I18n["Settings.Languages.fr"]</a></li>
+                </ul>
+            </div>
+        </GridOptionsItem>
+
+        <GridOptionsItem Name=@I18n["Settings.DarkTheme.Title"]
+                         Description=@I18n["Settings.DarkTheme.Description"]>
+            <div class="col d-flex align-items-center justify-content-center">
+                <div class="form-check form-switch m-0">
+                    <input class="form-check-input" type="checkbox" role="switch" id="switchDarkTheme" @bind="DarkTheme">
+                </div>
+            </div>
+        </GridOptionsItem>
+
+        <GridOptionsItem Name=@I18n["Settings.Notify.Title"]
+                         Description=@I18n["Settings.Notify.Description"]>
+            <div class="col d-flex align-items-center justify-content-center">
+                <div class="form-check form-switch m-0">
+                    <input class="form-check-input" type="checkbox" role="switch" id="switchNotify" @bind="Notify">
+                </div>
+            </div>
+        </GridOptionsItem>
+
+        @* <GridOptionsItem Name=@I18n["Settings.Workers.Title"]
+                         Description=@I18n["Settings.Workers.Description"]>
+            <input type="range" class="form-range w-25" min="1" max="5" id="range2" @bind="Workers" />
+        </GridOptionsItem> *@
+    </GridOptions>
+
+    @* <GridOptions Title=@I18n["Settings.External.Title"]>
+        <GridOptionsItem Name=@I18n["Settings.DOTManager.Title"]
+                         Description=@I18n["Settings.DOTManager.Description"]>
+            <button class="btn btn-outline-primary">
+                @I18n["Settings.DOTManager.StartButton"]
+                <i class="bi bi-box-arrow-right mx-1"></i>
+            </button>
+        </GridOptionsItem>
+    </GridOptions> *@
+</div>
+
+@code {
+    private bool _darkTheme;
+    private bool _notify;
+    private int _workers;
+
+    private string Language => I18n.CurrentLanguage;
+
+    protected override Task OnInitializedAsync()
+    {
+        // Carrega preferências (cross-platform)
+        _darkTheme = Preferences.Get("pref_dark_theme", false);
+        _notify = Preferences.Get("pref_notify", true);
+        _workers = Preferences.Get("pref_workers", 3);
+
+        // Aplica tema se disponível
+        try
+        {
+            Application.Current.UserAppTheme = _darkTheme ? AppTheme.Dark : AppTheme.Light;
+        }
+        catch
+        {
+            // ignorar se não suportado
+        }
+
+        return base.OnInitializedAsync();
+    }
+
+    private bool DarkTheme
+    {
+        get => _darkTheme;
+        set
+        {
+            if (_darkTheme == value) return;
+            _darkTheme = value;
+            Preferences.Set("pref_dark_theme", value);
+            try { Application.Current.UserAppTheme = value ? AppTheme.Dark : AppTheme.Light; } catch { }
+        }
+    }
+
+    private bool Notify
+    {
+        get => _notify;
+        set
+        {
+            if (_notify == value) return;
+            _notify = value;
+            Preferences.Set("pref_notify", value);
+        }
+    }
+
+    private int Workers
+    {
+        get => _workers;
+        set
+        {
+            if (_workers == value) return;
+            _workers = value;
+            Preferences.Set("pref_workers", value);
+        }
+    }
+
+    private async Task SetLanguageAsync(string lang)
+    {
+        await I18n.SetLanguageAsync(lang);
+    }
+}

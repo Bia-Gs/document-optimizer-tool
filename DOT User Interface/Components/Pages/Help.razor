@@ -1,0 +1,349 @@
+﻿@page "/help"
+@using Microsoft.AspNetCore.Components
+@inject IJSRuntime JS
+@inject I18n I18n
+
+<NavTabsMenu Options=Options />
+
+@switch (AppContext.PageTab)
+{
+    case PageTabs.Documentation:
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-10 col-md-6 col-lg-4 mt-3">
+                    <nav id="spyNav" class="flex-column align-items-stretch pe-4 border-end spy-container sm">
+                        <div class="nav nav-pills flex-column">
+                            <button type="button" class="nav-link text-start fw-bold" data-target-id="item-1" @onclick=@(() => GoTo("item-1"))>@I18n["Help.Nav.Item1"]</button>
+                            <div class="nav nav-pills flex-column">
+                                <button type="button" class="nav-link ms-3 text-start bi bi-arrow-return-right" data-target-id="item-1-1" @onclick=@(() => GoTo("item-1-1"))>@I18n["Help.Nav.Item1.1"]</button>
+                                <button type="button" class="nav-link ms-3 text-start bi bi-arrow-return-right" data-target-id="item-1-2" @onclick=@(() => GoTo("item-1-2"))>@I18n["Help.Nav.Item1.2"]</button>
+                            </div>
+                            <button type="button" class="nav-link text-start mt-1 fw-bold" data-target-id="item-2" @onclick=@(() => GoTo("item-2"))>@I18n["Help.Nav.Item2"]</button>
+                            <div class="nav nav-pills flex-column">
+                                <button type="button" class="nav-link ms-3 text-start bi bi-arrow-return-right" data-target-id="item-2-1" @onclick=@(() => GoTo("item-2-1"))>@I18n["Help.Nav.Item2.1"]</button>
+                                <button type="button" class="nav-link ms-3 text-start bi bi-arrow-return-right" data-target-id="item-2-2" @onclick=@(() => GoTo("item-2-2"))>@I18n["Help.Nav.Item2.2"]</button>
+                                <button type="button" class="nav-link ms-3 text-start bi bi-arrow-return-right" data-target-id="item-2-3" @onclick=@(() => GoTo("item-2-3"))>@I18n["Help.Nav.Item2.3"]</button>
+                                <button type="button" class="nav-link ms-3 text-start bi bi-arrow-return-right" data-target-id="item-2-4" @onclick=@(() => GoTo("item-2-4"))>@I18n["Help.Nav.Item2.4"]</button>
+                            </div>
+                            <button type="button" class="nav-link text-start mt-1 fw-bold" data-target-id="item-3" @onclick=@(() => GoTo("item-3"))>@I18n["Help.Nav.Item3"]</button>
+                            <div class="nav nav-pills flex-column">
+                                <button type="button" class="nav-link ms-3 text-start bi bi-arrow-return-right" data-target-id="item-3-1" @onclick=@(() => GoTo("item-3-1"))>@I18n["Help.Nav.Item3.1"]</button>
+                                <button type="button" class="nav-link ms-3 text-start bi bi-arrow-return-right" data-target-id="item-3-2" @onclick=@(() => GoTo("item-3-2"))>@I18n["Help.Nav.Item3.2"]</button>
+                                <button type="button" class="nav-link ms-3 text-start bi bi-arrow-return-right" data-target-id="item-3-3" @onclick=@(() => GoTo("item-3-3"))>@I18n["Help.Nav.Item3.3"]</button>
+                            </div>
+                            <button type="button" class="nav-link text-start mt-1 fw-bold" data-target-id="item-4" @onclick=@(() => GoTo("item-4"))>@I18n["Help.Nav.Item4"]</button>
+                            <div class="nav nav-pills flex-column">
+                                <button type="button" class="nav-link ms-3 text-start bi bi-arrow-return-right" data-target-id="item-4-1" @onclick=@(() => GoTo("item-4-1"))>@I18n["Help.Nav.Item4.1"]</button>
+                                <button type="button" class="nav-link ms-3 text-start bi bi-arrow-return-right" data-target-id="item-4-2" @onclick=@(() => GoTo("item-4-2"))>@I18n["Help.Nav.Item4.2"]</button>
+                                <button type="button" class="nav-link ms-3 text-start bi bi-arrow-return-right" data-target-id="item-4-3" @onclick=@(() => GoTo("item-4-3"))>@I18n["Help.Nav.Item4.3"]</button>
+                            </div>
+                            <button type="button" class="nav-link text-start mt-1 fw-bold" data-target-id="item-5" @onclick=@(() => GoTo("item-5"))>@I18n["Help.Nav.Item5"]</button>
+                            <div class="nav nav-pills flex-column">
+                                <button type="button" class="nav-link ms-3 text-start bi bi-arrow-return-right" data-target-id="item-5-1" @onclick=@(() => GoTo("item-5-1"))>@I18n["Help.Nav.Item5.1"]</button>
+                            </div>
+                            <button type="button" class="nav-link text-start mt-1 fw-bold" data-target-id="item-6" @onclick=@(() => GoTo("item-6"))>@I18n["Help.Nav.Item6"]</button>
+                            <div class="nav nav-pills flex-column">
+                                <button type="button" class="nav-link ms-3 text-start bi bi-arrow-return-right" data-target-id="item-6-1" @onclick=@(() => GoTo("item-6-1"))>@I18n["Help.Nav.Item6.1"]</button>
+                                <button type="button" class="nav-link ms-3 text-start bi bi-arrow-return-right" data-target-id="item-6-2" @onclick=@(() => GoTo("item-6-2"))>@I18n["Help.Nav.Item6.2"]</button>
+                                <button type="button" class="nav-link ms-3 text-start bi bi-arrow-return-right" data-target-id="item-6-3" @onclick=@(() => GoTo("item-6-3"))>@I18n["Help.Nav.Item6.3"]</button>
+                            </div>
+                            <button type="button" class="nav-link text-start mt-1 fw-bold" data-target-id="item-7" @onclick=@(() => GoTo("item-7"))>@I18n["Help.Nav.Item7"]</button>
+                            <div class="nav nav-pills flex-column">
+                                <button type="button" class="nav-link ms-3 text-start bi bi-arrow-return-right" data-target-id="item-7-1" @onclick=@(() => GoTo("item-7-1"))>@I18n["Help.Nav.Item7.1"]</button>
+                            </div>
+                        </div>
+                    </nav>
+                </div>
+
+                <div class="col mt-3">
+                    <div id="spyContainer" class="spy-container" tabindex="0">
+                        <div id="item-1" data-spy-section>
+                            <h4>@Html("Help.Sections.Help.Title")</h4>
+                        </div>
+                        <div id="item-1-1" data-spy-section>
+                            <h5>@Html("Help.Sections.FAQ.Title")</h5>
+                            <p>@Html("Help.Sections.FAQ.Description1")</p>
+                            <a>@Html("Help.Sections.FAQ.AccessLink")</a>
+                            <p>@Html("Help.Sections.FAQ.Description2")</p>
+                        </div>
+                        <div id="item-1-2" data-spy-section>
+                            <h5>@Html("Help.Sections.UserGuide.Title")</h5>
+                            <p>@Html("Help.Sections.UserGuide.FirstContact")</p>
+                            <p>@Html("Help.Sections.UserGuide.Paragraph1")</p>
+                            <p>@Html("Help.Sections.UserGuide.Paragraph2")</p>
+                            <p>@Html("Help.Sections.UserGuide.Paragraph3")</p>
+                            <p>@Html("Help.Sections.UserGuide.Paragraph4")</p>
+                            <a>@Html("Help.Sections.UserGuide.SettingsLink")</a>
+                        </div>
+                        <div id="item-2" data-spy-section>
+                            <h4>@Html("Help.Sections.UserGuide.TitleShort")</h4>
+                        </div>
+                        <div id="item-2-1" data-spy-section>
+                            <h5>@Html("Help.Sections.FirstContact.Title")</h5>
+                            <p>@Html("Help.Sections.FirstContact.Paragraph1")</p>
+                            <p>@Html("Help.Sections.FirstContact.Paragraph2")</p>
+                            <p>@Html("Help.Sections.FirstContact.Paragraph3")</p>
+                            <p>@Html("Help.Sections.FirstContact.Paragraph4")</p>
+                        </div>
+                        <div id="item-2-2" data-spy-section>
+                            <h5>@Html("Help.Sections.HowToUse.Title")</h5>
+                            <p>@Html("Help.Sections.HowToUse.Paragraph1")</p>
+                            <p>@Html("Help.Sections.HowToUse.Paragraph2")</p>
+                            <p>@Html("Help.Sections.HowToUse.Paragraph3")</p>
+                            <p>@Html("Help.Sections.HowToUse.Paragraph4")</p>
+                            <a>@Html("Help.Sections.HowToUse.EditorLink")</a>
+                            <a>@Html("Help.Sections.HowToUse.MarkerLink1")</a>
+                            <a>@Html("Help.Sections.HowToUse.MarkerLink2")</a>
+                        </div>
+                        <div id="item-2-3" data-spy-section>
+                            <h5>@Html("Help.Sections.HowSystemsWork.Title")</h5>
+                            <p>@Html("Help.Sections.HowSystemsWork.Intro")</p>
+                            <p>@Html("Help.Sections.HowSystemsWork.Step1.Title")</p>
+                            <p>@Html("Help.Sections.HowSystemsWork.Step1.Description")</p>
+                            <p>@Html("Help.Sections.HowSystemsWork.Note1")</p>
+                            <p>@Html("Help.Sections.HowSystemsWork.Step2.Title")</p>
+                            <p>@Html("Help.Sections.HowSystemsWork.Step2.Description")</p>
+                            <p>@Html("Help.Sections.HowSystemsWork.Step3.Title")</p>
+                            <p>@Html("Help.Sections.HowSystemsWork.Step3.Description")</p>
+                            <p>@Html("Help.Sections.HowSystemsWork.Step4.Title")</p>
+                            <p>@Html("Help.Sections.HowSystemsWork.Step4.Description")</p>
+                            <p>@Html("Help.Sections.HowSystemsWork.Step5.Title")</p>
+                            <p>@Html("Help.Sections.HowSystemsWork.Step5.Description")</p>
+                            <p>@Html("Help.Sections.HowSystemsWork.Step6.Title")</p>
+                            <p>@Html("Help.Sections.HowSystemsWork.Step6.Description")</p>
+                        </div>
+                        <div id="item-2-4" data-spy-section>
+                            <h5>@Html("Help.Sections.SupportedExtensions.Title")</h5>
+                            <p>@Html("Help.Sections.SupportedExtensions.Markup")</p>
+                            <p>@Html("Help.Sections.SupportedExtensions.Editor")</p>
+                            <p>@Html("Help.Sections.SupportedExtensions.Translator")</p>
+                        </div>
+                        <div id="item-3" data-spy-section>
+                            <h4>@Html("Help.Sections.Markup.Title")</h4>
+                        </div>
+                        <div id="item-3-1" data-spy-section>
+                            <h5>@Html("Help.Sections.Markup.Overview.Title")</h5>
+                            <p>@Html("Help.Sections.Markup.Overview.Paragraph1")</p>
+                        </div>
+                        <div id="item-3-2" data-spy-section>
+                            <h5>@Html("Help.Sections.Markup.Marker.Title")</h5>
+                            <p>@Html("Help.Sections.Markup.Marker.Paragraph1")</p>
+                            <p>@Html("Help.Sections.Markup.Marker.Paragraph2")</p>
+                            <p>@Html("Help.Sections.Markup.Marker.HowToSetup")</p>
+                            <p>@Html("Help.Sections.Markup.Marker.SetupDescription")</p>
+                            <p>@Html("Help.Sections.Markup.Marker.FileLimitNote")</p>
+                            <p>@Html("Help.Sections.Markup.Marker.TableNoteIntro")</p>
+                            <p>
+                                <table class="table table-striped table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">#</th>
+                                            <th scope="col">@Html("Help.Sections.Markup.Marker.Table.SourceTerms")</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <th scope="row">1</th>
+                                            <td>@Html("Help.Sections.Markup.Marker.ExampleTerm1")</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">2</th>
+                                            <td>@Html("Help.Sections.Markup.Marker.ExampleTerm2")</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">3</th>
+                                            <td>@Html("Help.Sections.Markup.Marker.ExampleTerm3")</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">...</th>
+                                            <td>...</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </p>
+                            <p>@Html("Help.Sections.Markup.Marker.ColumnNote")</p>
+                            <p>@Html("Help.Sections.Markup.Marker.ManualCreate")</p>
+                            <p>@Html("Help.Sections.Markup.Marker.ManualCreateNote")</p>
+                            <p>@Html("Help.Sections.Markup.Marker.HowToEdit")</p>
+                            <p>@Html("Help.Sections.Markup.Marker.HowToApply")</p>
+                        </div>
+                        <div id="item-3-3" data-spy-section>
+                            <h5>@Html("Help.Sections.Markup.Rewrite.Title")</h5>
+                            <p>@Html("Help.Sections.Markup.Rewrite.Paragraph1")</p>
+                            <p>@Html("Help.Sections.Markup.Rewrite.Paragraph2")</p>
+                            <p>@Html("Help.Sections.Markup.Rewrite.HowToSetup")</p>
+                            <p>@Html("Help.Sections.Markup.Rewrite.SetupDescription")</p>
+                            <p>@Html("Help.Sections.Markup.Rewrite.FileLimitNote")</p>
+                            <p>
+                                <table class="table table-striped table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">#</th>
+                                            <th scope="col">@Html("Help.Sections.Markup.Rewrite.Table.SourceTerms")</th>
+                                            <th scope="col">@Html("Help.Sections.Markup.Rewrite.Table.TargetTerms")</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <th scope="row">1</th>
+                                            <td>@Html("Help.Sections.Markup.Rewrite.ExampleSource1")</td>
+                                            <td>@Html("Help.Sections.Markup.Rewrite.ExampleTarget1")</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">2</th>
+                                            <td>@Html("Help.Sections.Markup.Rewrite.ExampleSource2")</td>
+                                            <td>@Html("Help.Sections.Markup.Rewrite.ExampleTarget2")</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">3</th>
+                                            <td>@Html("Help.Sections.Markup.Rewrite.ExampleSource3")</td>
+                                            <td>@Html("Help.Sections.Markup.Rewrite.ExampleTarget3")</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">...</th>
+                                            <td>...</td>
+                                            <td>...</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </p>
+                            <p>@Html("Help.Sections.Markup.Rewrite.ColumnsPermutationNote")</p>
+                            <p>@Html("Help.Sections.Markup.Rewrite.ManualCreateNote")</p>
+                            <p>@Html("Help.Sections.Markup.Rewrite.HowToEditApply")</p>
+                        </div>
+                        <div id="item-4" data-spy-section>
+                            <h4>@Html("Help.Sections.Editor.Title")</h4>
+                        </div>
+                        <div id="item-4-1" data-spy-section>
+                            <h5>@Html("Help.Sections.Editor.Overview.Title")</h5>
+                            <p>@Html("Help.Sections.Editor.Overview.Paragraph1")</p>
+                            <p>@Html("Help.Sections.Editor.Overview.Paragraph2")</p>
+                            <p>@Html("Help.Sections.Editor.Overview.Paragraph3")</p>
+                            <p><b>@Html("Help.Sections.Editor.Overview.HowToSetup.Title")</b></p>
+                            <p>@Html("Help.Sections.Editor.Overview.HowToSetup.Desc")</p>
+                            <p><b>@Html("Help.Sections.Editor.Overview.HowToEdit.Title")</b></p>
+                            <p>@Html("Help.Sections.Editor.Overview.HowToEdit.Desc")</p>
+                            <p><b>@Html("Help.Sections.Editor.Overview.HowToApply.Title")</b></p>
+                            <p>@Html("Help.Sections.Editor.Overview.HowToApply.Desc")</p>
+                        </div>
+                        <div id="item-4-2" data-spy-section>
+                            <h5>@Html("Help.Sections.Editor.Rewrite.Title")</h5>
+                            <p>@Html("Help.Sections.Editor.Rewrite.Paragraph1")</p>
+                            <p>@Html("Help.Sections.Editor.Rewrite.Paragraph2")</p>
+                        </div>
+                        <div id="item-4-3" data-spy-section>
+                            <h5>@Html("Help.Sections.Editor.Paragraph.Title")</h5>
+                            <p>@Html("Help.Sections.Editor.Paragraph.Paragraph1")</p>
+                            <p>@Html("Help.Sections.Editor.Paragraph.Paragraph2")</p>
+                            <p>@Html("Help.Sections.Editor.Paragraph.Paragraph3")</p>
+                        </div>
+                        <div id="item-5" data-spy-section>
+                            <h4>@Html("Help.Sections.Translator.Title")</h4>
+                        </div>
+                        <div id="item-5-1" data-spy-section>
+                            <h5>@Html("Help.Sections.Translator.Overview.Title")</h5>
+                            <p>@Html("Help.Sections.Translator.Overview.Paragraph1")</p>
+                            <p>@Html("Help.Sections.Translator.Overview.Paragraph2")</p>
+                        </div>
+                        <div id="item-6" data-spy-section>
+                            <h4>@Html("Help.Sections.Settings.Title")</h4>
+                        </div>
+                        <div id="item-6-1" data-spy-section>
+                            <h5>@Html("Help.Sections.Settings.Overview.Title")</h5>
+                            <p>@Html("Help.Sections.Settings.Overview.Paragraph1")</p>
+                            <a>@Html("Help.Sections.Settings.Overview.NotificationsLink")</a>
+                            <p>@Html("Help.Sections.Settings.Overview.Paragraph2")</p>
+                            <p>@Html("Help.Sections.Settings.Overview.Paragraph3")</p>
+                            <p>@Html("Help.Sections.Settings.Overview.Paragraph4")</p>
+                            <p>@Html("Help.Sections.Settings.Overview.Paragraph5")</p>
+                        </div>
+                        <div id="item-6-2" data-spy-section>
+                            <h5>@Html("Help.Sections.Settings.Notifications.Title")</h5>
+                            <p>@Html("Help.Sections.Settings.Notifications.Paragraph1")</p>
+                            <p>@Html("Help.Sections.Settings.Notifications.Paragraph2")</p>
+                            <p>@Html("Help.Sections.Settings.Notifications.Paragraph3")</p>
+                        </div>
+                        <div id="item-6-3" data-spy-section>
+                            <h5>@Html("Help.Sections.Settings.DOTManager.Title")</h5>
+                            <p>@Html("Help.Sections.Settings.DOTManager.Paragraph1")</p>
+                            <p>@Html("Help.Sections.Settings.DOTManager.Paragraph2")</p>
+                            <p>@Html("Help.Sections.Settings.DOTManager.Paragraph3")</p>
+                        </div>
+                        <div id="item-7" data-spy-section>
+                            <h4>@Html("Help.Sections.Others.Title")</h4>
+                        </div>
+                        <div id="item-7-1" data-spy-section>
+                            <h5>@Html("Help.Sections.ChangeLog.Title")</h5>
+                            <p><b>@Html("Help.Sections.ChangeLog.Release31")</b><br />@Html("Help.Sections.ChangeLog.Release31.Items")</p>
+                            <p><b>@Html("Help.Sections.ChangeLog.Release30")</b><br />@Html("Help.Sections.ChangeLog.Release30.Items")</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        break;
+
+    case PageTabs.Settings:
+        <Settings />
+        break;
+
+    default:
+        <Introduction Title=@I18n["Help.Introduction.Title"]
+                      Description=@I18n["Help.Introduction.Description"]>
+            <a class="btn btn-outline-primary px-4 my-5 rounded-4 fs-5">
+                <i class="bi bi-microsoft-teams me-1"></i>
+                @I18n["Help.Introduction.Button"]
+            </a>
+        </Introduction>
+        break;
+}
+
+@code {
+    [CascadingParameter] public AppContextModel AppContext { get; set; }
+    private List<PageTabs> Options = [PageTabs.Documentation, PageTabs.Settings];
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender) await JS.InvokeVoidAsync("DOTSpy.init", "#spyContainer", "#spyNav");
+    }
+
+    private async Task GoTo(string id) => await JS.InvokeVoidAsync("DOTSpy.scrollTo", id, "#spyContainer");
+
+    // Helper para renderizar HTML vindo de resources (converte \n => <br />)
+    private MarkupString Html(string key, bool convertLineBreaks = true)
+    {
+        var s = I18n[key] ?? string.Empty;
+        if (convertLineBreaks)
+        {
+            s = s.Replace("\r\n", "\n").Replace("\n", "<br />");
+        }
+        return new MarkupString(s);
+    }
+}
+
+<style>
+    .spy-container {
+        position: relative;
+        height: calc(100vh - 12rem); /* ajuste como quiser */
+        overflow: auto;
+        padding-right: 1rem;
+    }
+
+        .spy-container div {
+            margin-top: 15px;
+        }
+
+        .spy-container h5 {
+            margin-left: 5px;
+            margin-top: 15px;
+        }
+
+        .spy-container a,
+        .spy-container p {
+            margin-left: 10px;
+        }
+
+    #spyNav .nav-link.active {
+        background-color: var(--bs-primary);
+        color: #fff;
+    }
+</style>

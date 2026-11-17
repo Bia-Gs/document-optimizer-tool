@@ -1,0 +1,63 @@
+﻿@page "/"
+@inject I18n I18n
+
+<NavTabsMenu Options=Options />
+
+<div class="container-fluid mb-3">
+    @switch (AppContext.PageTab)
+    {
+        case PageTabs.Journal:
+            <GridData Title=@I18n["Home.Journal.Title"]
+                      Description=@I18n["Home.Journal.Description"]>
+                <GridDataItem Image="bi-newspaper"
+                              Title=@I18n["Home.Journal.News.Title"]
+                              Text=@I18n["Home.Journal.News.Text"]>
+                </GridDataItem>
+            </GridData>
+            break;
+
+        case PageTabs.Processing:
+            <Introduction Title=@I18n["Home.Processing.Title"]
+                            Description=@I18n["Home.Processing.Description"]>
+                <GridOptionsFileList />
+                <GridOptions Blocked=@(AppContext.SelectedFiles.Count == 0)
+                                Title=@I18n["Home.Processing.Actions.Title"]
+                                TitleBlocked=@I18n["Home.Processing.Actions.Blocked"]>
+                    <GridOptionsItem Name=@I18n["Home.Processing.Actions.Editor.Name"]
+                                        Description=@I18n["Home.Processing.Actions.Editor.Description"]>
+                        <a href="/editor" @onclick=AppContext.PageEditor class="btn btn-outline-primary">@I18n["NavMenu.Editor"]</a>
+                    </GridOptionsItem>
+                    <GridOptionsItem Name=@I18n["Home.Processing.Actions.Marker.Name"]
+                                        Description=@I18n["Home.Processing.Actions.Marker.Description"]>
+                        <a href="/marker" @onclick=AppContext.PageMarker class="btn btn-outline-primary">@I18n["NavMenu.Marker"]</a>
+                    </GridOptionsItem>
+                    <GridOptionsItem Name=@I18n["Home.Processing.Actions.Translator.Name"]
+                                        Description=@I18n["Home.Processing.Actions.Translator.Description"]>
+                        <a href="/translator" @onclick=AppContext.PageTranslator class="btn btn-outline-primary">@I18n["NavMenu.Translator"]</a>
+                    </GridOptionsItem>
+                </GridOptions>
+            </Introduction>
+            break;
+
+        case PageTabs.Notifications:
+            <Notifications />
+            break;
+
+        case PageTabs.Settings:
+            <Settings />
+            break;
+
+        default:
+            <Introduction Title=@I18n["Home.Welcome.Title"]
+                          Description=@I18n["Home.Welcome.Description"]>
+                <FilePickerButton ButtonClass="px-4 my-5 rounded-4 fs-5"
+                                  ButtonText=@I18n["Home.Welcome.Button"] />
+            </Introduction>
+            break;
+    }
+</div>
+
+@code {
+    [CascadingParameter] public AppContextModel AppContext { get; set; }
+    private List<PageTabs> Options = [PageTabs.Journal, PageTabs.Processing, PageTabs.Notifications, PageTabs.Settings];
+}

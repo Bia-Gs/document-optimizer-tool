@@ -1,0 +1,65 @@
+﻿@inject I18n I18n
+@using DOT_User_Interface.Models.Routines
+@using DOT_User_Interface.Models.Routines.Util
+@using Microsoft.AspNetCore.Components.Forms
+
+<label for="@_id" class="btn btn-outline-primary btn-secondary @ButtonClass" title="@Title">
+    <i class="bi bi-upload"></i>
+    @ButtonText
+</label>
+
+<InputFile id="@_id"
+           class="d-none"
+           multiple="@Multiple"
+           accept="@Accepts"
+           OnChange="OnFilesSelected" />
+
+@code {
+    [CascadingParameter] public AppContextModel? AppContext { get; set; }
+
+    [Parameter] public RoutineFactory RoutineFactory { get; set; } = default!;
+    [Parameter] public EventCallback<IRoutine> OnImported { get; set; }
+    [Parameter] public EventCallback OnSelected { get; set; }
+    [Parameter] public string ButtonText { get; set; } = "Import";
+    [Parameter] public string ButtonClass { get; set; } = "";
+    [Parameter] public string Title { get; set; } = "Import from JSON";
+    [Parameter] public string Accepts { get; set; } = ".json";
+    [Parameter] public bool Multiple { get; set; } = false;
+    [Parameter] public long MaxFileSizeBytes { get; set; } = 10 * 1024 * 1024; // 10MB
+
+    // Se quiser renomear/importar como tipo específico:
+    [Parameter] public string? NewName { get; set; }
+    [Parameter] public RoutineTypes? OverrideType { get; set; }
+
+    private readonly string _id = $"import_routine_{Guid.NewGuid():N}";
+
+    private async Task OnFilesSelected(InputFileChangeEventArgs e)
+    {
+        try
+        {
+            if (RoutineFactory is null) return;
+
+            var files = Multiple ? e.GetMultipleFiles() : new[] { e.File };
+            foreach (var file in files)
+            {
+                if (!file.Name.EndsWith(".json", StringComparison.OrdinalIgnoreCase))
+                    continue;
+
+                var routine = await RoutineFactory.ImportNewFromBrowserFileAsync(file, NewName, OverrideType, MaxFileSizeBytes);
+
+                // callback para o caller (ex.: navegar para Create)
+                if (OnImported.HasDelegate)
+                    await OnImported.InvokeAsync(routine);
+
+                if (OnSelected.HasDelegate)
+                    await OnSelected.InvokeAsync();
+            }
+        }
+        catch (Exception ex)
+        {
+            System.Diagnostics.Debug.WriteLine($"Falha ao importar rotina: {ex}");
+            // opcional: notificar usuário
+        }
+        StateHasChanged();
+    }
+}

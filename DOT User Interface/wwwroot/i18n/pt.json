@@ -1,0 +1,30 @@
+{
+  "nav.home": "Início",
+  "nav.journal": "Journal",
+  "nav.processing": "Processamento",
+  "nav.notifications": "Notificações",
+  "nav.settings": "Configurações",
+
+  "intro.welcome.title": "Bem-vindo ao DOT",
+  "intro.welcome.desc": "Este software foi desenvolvido para otimizar a revisão de documentos técnicos e acelerar a aplicação de edições em múltiplos documentos.",
+  "intro.selectFiles": "Selecionar arquivos ou arrastar e soltar",
+
+  "journal.title": "Veja o que há de novo",
+  "journal.desc": "Abaixo estão os novos recursos do sistema, cada um em sua área.",
+  "journal.docMgmt.title": "Gestão de Documentos",
+  "journal.docMgmt.text": "Gerencie e organize seus documentos técnicos com rapidez.",
+  "journal.docMgmt.updated": "Atualizado há 2 dias",
+  "journal.docMgmt.manageBtn": "Gerenciar Documentos",
+
+  "processing.title": "Processe seus arquivos",
+  "processing.desc": "Selecione quais documentos serão processados e escolha qual sistema irá trabalhar neles.",
+  "processing.actions.title": "2. Ações: escolha o sistema",
+  "processing.editor.name": "Sistema de Edição",
+  "processing.editor.desc": "Edite texto ou estruturas rapidamente",
+  "processing.marker.name": "Sistema de Marcação",
+  "processing.marker.desc": "Marque termos rapidamente",
+  "processing.translator.name": "Sistema de Tradução",
+  "processing.translator.desc": "Traduza seus arquivos com velocidade e precisão",
+
+  "a11y.unreadMessages": "mensagens não lidas"
+}

@@ -1,0 +1,204 @@
+﻿@page "/generator"
+@using DOT_User_Interface.Models.Forms
+@using System.Drawing
+@using System.Drawing.Imaging
+@inject I18n I18n
+
+<NavTabsMenu Options=Options />
+
+<div class="container-fluid mb-3">
+    @switch (AppContext.PageTab)
+    {
+        case PageTabs.Create:
+            if (FormsFactory.WorkingForms == null)
+            {
+                <GridData Title=@I18n["Markup.Create.Title"]
+                          Description=@I18n["Markup.Create.Description"]>
+                    <GridDataItem Image="bi-file-earmark-word"
+                                  Title=@I18n["Markup.Create.Marker.Title"]
+                                  Text=@I18n["Markup.Create.Marker.Text"]>
+                        <div class="hstack gap-3 justify-content-center">
+                            <button @onclick=FormsFactory.Create class="btn btn-secondary btn-outline-primary">
+                                <i class="bi bi-plus-lg"></i>
+                                @I18n["Create.Create.Button"]
+                            </button>
+                            @if (FormsFactory.List.Count() > 0)
+                            {
+                                <div class="vr"></div>
+                                <div class="dropdown">
+                                    <button class="btn btn-outline-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                        <i class="bi bi-pencil-square"></i>
+                                        @I18n["Create.Choose.Button"]
+                                    </button>
+                                    <ul class="dropdown-menu">
+                                        @foreach (var Item in FormsFactory.List)
+                                        {
+                                            <li><a @onclick=@(() => FormsFactory.Edit(Item)) class="dropdown-item">@Item.Name</a></li>
+
+                                        }
+                                    </ul>
+                                </div>
+                            }
+                        </div>
+                    </GridDataItem>
+                </GridData>
+            }
+            else if (FormsFactory.WorkingForms.SelectedItem != null)
+            {
+                <div class="card">
+                    <div class="card-header d-flex align-items-center">
+                        <div class="me-auto">
+                            <h5 class="mb-0 fw-medium">Input properties</h5>
+                            <small class="text-primary fw-lighter">Setup your input</small>
+                        </div>
+                        <button class="btn btn-outline-primary me-2" @onclick=FormsFactory.WorkingForms.Cancel>
+                            Close
+                        </button>
+                    </div>
+                    @switch (FormsFactory.WorkingForms.SelectedItem)
+                    {
+                        case Table Table:
+                            <FormTable Table=Table />
+                            break;
+                        case Text Text:
+                            <FormText Model=Text />
+                            break;
+                    }
+                </div>
+            }
+            else
+            {
+                <Introduction Title="Forms Template"
+                              Description="Configure the forms and the resulting document. To begin, add a field under ‘Add.’">
+                    <div class="container-fluid d-grid gap-2">
+                        <div class="container-fluid d-grid gap-2 my-2">
+                            <div class="row">
+                                <div class="input-group border border-primary rounded-3">
+                                    <span class="input-group-text bg-transparent border-0">
+                                        @I18n["Create.Name.Field"]
+                                    </span>
+                                    <input @bind=FormsFactory.WorkingForms.Name
+                                           type="text"
+                                           class="form-control @(FormsFactory.WorkingForms.Name == "" ? "bg-danger" : "bg-transparent") bg-opacity-25 border-0 text-primary fw-bold">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="input-group input-group-sm border border-primary rounded-3">
+                                    <span class="input-group-text bg-transparent border-0">
+                                        @I18n["Create.Description.Field"]
+                                    </span>
+                                    <textarea @bind=FormsFactory.WorkingForms.Description
+                                              class="form-control bg-transparent border-0 text-primary"
+                                              aria-label="With textarea"></textarea>
+                                </div>
+                            </div>
+                            <div class="row gap-2">
+                                <div class="col dropdown">
+                                    <button class="btn btn-secondary btn-outline-primary dropdown-toggle w-100 h-100" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                        Add
+                                    </button>
+                                    <ul class="dropdown-menu">
+                                        <li><a class="dropdown-item" @onclick=@(() => FormsFactory.WorkingForms.Add(FormsType.Text))>Text</a></li>
+                                        <li><a class="dropdown-item" @onclick=@(() => FormsFactory.WorkingForms.Add(FormsType.Table))>Table</a></li>
+                                    </ul>
+                                </div>
+                                <button disabled="@(FormsFactory.WorkingForms.Name == "")"
+                                        @onclick=FormsFactory.Save
+                                        type="button"
+                                        class="col btn btn-secondary btn-outline-primary">
+                                    <i class="bi bi-floppy"></i>
+                                    @I18n["Create.Save.Button"]
+                                </button>
+                                <button @onclick=FormsFactory.Cancel
+                                        type="button"
+                                        class="col btn btn-outline-danger">
+                                    <i class="bi bi-x-lg"></i>
+                                    @I18n["Create.Cancel.Button"]
+                                </button>
+                                @if (FormsFactory.List.Contains(FormsFactory.WorkingForms))
+                                {
+                                    <button @onclick=FormsFactory.Delete
+                                            type="button"
+                                            class="col btn btn-outline-danger">
+                                        <i class="bi bi-trash3"></i>
+                                        @I18n["Create.Delete.Button"]
+                                    </button>
+                                }
+                            </div>
+                            <div class="container-fluid mt-3">
+                                @foreach (var Item in FormsFactory.WorkingForms.Items)
+                                {
+                                    <div class="row mb-1 p-3 gap-1 border rounded-3 border-dark bg-secondary bg-opacity-10">
+                                        <div class="col text-align fs-5 text-start">
+                                            <small class="text-primary fw-lighter">@Item.Type.ToString() input:</small> @Item.Name
+                                        </div>
+                                        <div class="col d-flex gap-1">
+                                            <button class="ms-auto btn btn-outline-primary" @onclick=@(() => FormsFactory.WorkingForms.Edit(Item))>
+                                                <i class="bi bi-pen"></i>
+                                                Edit
+                                            </button>
+                                            <button class="btn btn-outline-danger" @onclick=@(() => FormsFactory.WorkingForms.Remove(Item))>
+                                                <i class="bi bi-x-lg"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </Introduction>
+            }
+            break;
+
+        case PageTabs.Processing:
+            <Introduction Title="Generate a file"
+                          Description="Select a template, fill in the details, and generate the document. If you don't have a template, you can create one in the creation area.">
+                <div class="container-fluid d-flex flex-column flex-sm-row gap-2 py-2">
+                    <button type="button" class="btn btn-outline-primary" @onclick=AppContext.PageTabCreate>
+                        <i class="bi bi-plus-lg"></i>
+                        @I18n["Processing.Creation.Button"]
+                    </button>
+                    <div class="vr mx-1"></div>
+                    <div class="dropdown">
+                        <button disabled="@(FormsFactory.List.Count == 0)" class="btn btn-outline-primary btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            @I18n["Processing.Applying.Choose"]
+                        </button>
+                        <ul class="dropdown-menu">
+                            @foreach (Forms form in FormsFactory.List)
+                            {
+                                <li><a @onclick=@(() => SelectedForms = form) class="dropdown-item">@form.Name</a></li>
+                            }
+                        </ul>
+                    </div>
+                </div>
+                @if (SelectedForms != null)
+                {
+                    <div>Forms inputs of @SelectedForms.Name</div>
+                }
+            </Introduction>
+            break;
+
+        case PageTabs.Notifications:
+            <Notifications />
+            break;
+
+        case PageTabs.Settings:
+            <Settings />
+            break;
+
+        default:
+            <Introduction Title="Generator System"
+                          Description="Here you can generate documents in an organized manner and in a specific template. Filling in the data is similar to filling out a form, which generates a document.">
+                <FilePickerButton ButtonClass="px-4 my-5 rounded-4 fs-5"
+                                  ButtonText=@I18n["Introduction.Button"] />
+            </Introduction>
+            break;
+    }
+</div>
+
+@code {
+    [CascadingParameter] public AppContextModel AppContext { get; set; }
+    private List<PageTabs> Options { get; } = new() { PageTabs.Create, PageTabs.Processing, PageTabs.Notifications, PageTabs.Settings };
+    private FormsFactory FormsFactory = new();
+    private Forms? SelectedForms = null;
+}

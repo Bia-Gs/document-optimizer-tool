@@ -1,0 +1,85 @@
+﻿@using DOT_User_Interface.Models.Forms
+@using System.Drawing
+@inject I18n I18n
+
+
+
+<div class="card-body gap-3">
+    <div class="row p-2">
+        <label class="form-label">Input name</label>
+        <input type="text" class="form-control" @bind="Model.Name" />
+    </div>
+
+    <div class="row p-2">
+        <label class="form-label">Texto</label>
+        <textarea class="form-control" rows="4" @bind="Model.Value"></textarea>
+    </div>
+
+    <div class="row g-2">
+        <div class="col-3">
+            <label class="form-label">Justificação</label>
+            <select class="form-select" @bind="Model.Justification">
+                @foreach (var j in Enum.GetValues<Justification>())
+                {
+                    <option value="@j">@j</option>
+                }
+            </select>
+        </div>
+        <div class="col-md-3">
+            <label class="form-label">Font Family</label>
+
+            <select class="form-select" @bind="Model.FontFamily">
+                @foreach (var font in FontFamilies)
+                {
+                    <option value="@font" style="font-family:@font">
+                        @font
+                    </option>
+                }
+            </select>
+        </div>
+        <div class="col-md-2">
+            <label class="form-label">Font size</label>
+            <input type="number" class="form-control" @bind="Model.FontSize" />
+        </div>
+        <div class="col-md-2">
+            <label class="form-label">Text color</label>
+            <input type="color" class="form-control form-control-color" @bind="Model.ColorHex" />
+        </div>
+        <div class="col-md-2 d-flex align-items-end">
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" id="chkBold" @bind="Model.Bold" />
+                <label class="form-check-label" for="chkBold">Bold</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" id="chkItalic" @bind="Model.Italic" />
+                <label class="form-check-label" for="chkItalic">Italic</label>
+            </div>
+        </div>
+    </div>
+
+    <div class="mt-3">
+        <small class="text-primary fw-lighter">Preview</small>
+        <div class="border rounded p-2"
+             style=@($"color:{Model.ColorHex}; font-size:{(Model.FontSize > 0 ? Model.FontSize : 12)}px; font-style:{(Model.Italic ? "italic" : "normal")}; font-weight:{(Model.Bold ? "bold" : "normal")}; font-family:{(Model.FontFamily ?? "inherit")}; text-align:{Model.Justification.ToString().ToLowerInvariant()};")>
+            @Model.Value
+        </div>
+    </div>
+</div>
+
+@code {
+    [Parameter] public Text Model { get; set; } = new();
+
+    private readonly List<string> FontFamilies =
+    [
+        "Arial",
+        "Calibri",
+        "Verdana",
+        "Tahoma",
+        "Times New Roman",
+        "Georgia",
+        "Trebuchet MS",
+        "Courier New",
+        "Segoe UI",
+        "Cambria"
+    ];
+}

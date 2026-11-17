@@ -1,0 +1,89 @@
+﻿@page "/translator"
+@inject I18n I18n
+
+<NavTabsMenu Options=Options />
+
+<div class="container-fluid mb-3">
+    @switch (AppContext.PageTab)
+    {
+        case PageTabs.Processing:
+            <TabProcess Description=@I18n["Translator.Processing.Description"]>
+                <div class="hstack gap-1 justify-content-center ms-auto">
+                    <div class="form-check form-switch me-3">
+                      <input class="form-check-input" @bind=TranslateFactory.UseGlossray type="checkbox" role="switch" id="switchCheckChecked">
+                      <label class="form-check-label" for="switchCheckChecked">
+                          @I18n["Translator.Glossaries"]
+                      </label>
+                    </div>
+                    <div class="dropdown">
+                        <button class="btn btn-outline-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            @ValueOption(TranslateFactory.SourceLanguage)
+                        </button>
+                        <ul class="dropdown-menu">
+                            @foreach (var option in Enum.GetValues<TranslationOptions>())
+                            {
+                                <li class="dropdown-item" @onclick=@(() => TranslateFactory.SourceLanguage = option)>@ValueOption(option)</li>
+                            }
+                        </ul>
+                    </div>
+                    <i class="bi bi-arrow-right-short"></i>
+                    <div class="dropdown">
+                        <button 
+                            class="btn btn-outline-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            @ValueOption(TranslateFactory.TargeLanguage)
+                        </button>
+                        <ul class="dropdown-menu">
+                            @foreach (var option in Enum.GetValues<TranslationOptions>())
+                            {
+                                if (option != TranslationOptions.Auto)
+                                {
+                                    <li class="dropdown-item" @onclick=@(() => TranslateFactory.TargeLanguage = option)>@ValueOption(option)</li>
+                                }
+                            }
+                        </ul>
+                    </div>
+                </div>
+                 <div class="vr mx-1 d-none d-sm-block"></div>
+                <button disabled="@(!TranslateFactory.CanTranslate || !AppContext.HasFiles)"
+                        @onclick=@(() => AppContext.ProcessFilesAsync(ProcessEndpoints.Translator, TranslateFactory.ProcessingArgs()))
+                        class="btn btn-secondary btn-outline-primary">
+                    @I18n["Translator.Processing.Applying.Button"]
+                </button>
+            </TabProcess>
+            break;
+
+        case PageTabs.Notifications:
+            <Notifications />
+            break;
+
+        case PageTabs.Settings:
+            <Settings />
+            break;
+
+        default:
+            <Introduction Title=@I18n["Translator.Introduction.Title"]
+                          Description=@I18n["Translator.Introduction.Description"]>
+                <FilePickerButton ButtonClass="px-4 my-5 rounded-4 fs-5"
+                                  ButtonText=@I18n["Introduction.Button"] />
+            </Introduction>
+            break;
+    }
+</div>
+
+@code {
+    [CascadingParameter] public AppContextModel AppContext { get; set; }
+    private List<PageTabs> Options { get; } = new() { PageTabs.Processing, PageTabs.Notifications, PageTabs.Settings };
+    private TranslateFactory TranslateFactory = new();
+    public string ValueOption(TranslationOptions opt)
+    {
+        return opt switch
+        {
+            TranslationOptions.Auto => I18n["Translator.Option.Auto"],
+            TranslationOptions.EN => I18n["Translator.Option.EN"],
+            TranslationOptions.ES => I18n["Translator.Option.ES"],
+            TranslationOptions.FR => I18n["Translator.Option.FR"],
+            TranslationOptions.PT => I18n["Translator.Option.PT"],
+            _ => string.Empty,
+        };
+    }
+}
