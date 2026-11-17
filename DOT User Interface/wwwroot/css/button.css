@@ -1,13 +1,13 @@
 ﻿button {
   font-size: 2vmin;
   cursor: pointer;
-  background-color: #c8ff08;
+  background-color: #2EC4B6;
   min-height: 4vmin;
   min-width: 17vmin;
   border: none;
   border-radius: 2.5vmin;
-  color: #005e60;
-  border: 0.1vmin solid #005e60;
+  color: #2C5F7C;
+  border: 0.1vmin solid #2C5F7C;
   transition: background-color 0.3s, transform 0.3s ease-in-out;
 }
 
@@ -18,10 +18,10 @@ button-settings {
   bottom: 2vmin;
   left: 2vmin;
   font-size: 2vmin;
-  color: #005e60;
+  color: #2C5F7C;
   cursor: pointer;
-  border: 0.1vmin solid #005e60;
-  background-color: #c8ff08;
+  border: 0.1vmin solid #2C5F7C;
+  background-color: #2EC4B6;
   border-radius: 5vmin;
   text-align: center;
   transition: background-color 0.3s, transform 0.3s ease-in-out;
@@ -47,7 +47,7 @@ button-settings img {
 button:hover,
 button-settings:hover {
   color: #ffffff;
-  background-color: #005e60;
+  background-color: #2C5F7C;
 }
 
 button:hover img,

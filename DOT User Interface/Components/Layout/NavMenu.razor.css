@@ -27,7 +27,7 @@ header {
 }
 
     header ul {
-        background-color: #005e60;
+        background-color: #2C5F7C;
         flex-direction: row;
         border-radius: 1vmin;
     }
@@ -38,7 +38,7 @@ header {
     }
 
     header h2 {
-        color: #c8ff08;
+        color: #2EC4B6;
     }
 
     header h4 {
@@ -49,8 +49,8 @@ header {
     }
 
         header h4:hover {
-            color: #c8ff08;
+            color: #2EC4B6;
             transform: scale(1.3);
             border: none;
-            border-bottom: 2px solid #c8ff08;
+            border-bottom: 2px solid #2EC4B6;
         }
